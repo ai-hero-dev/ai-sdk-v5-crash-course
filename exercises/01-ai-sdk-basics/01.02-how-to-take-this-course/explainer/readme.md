@@ -17,10 +17,10 @@ pnpm install
 
 If you don't have PNPM installed, install it first via [this link](https://pnpm.io/installation).
 
-Next, let's copy the `env.example` file to `.env`:
+Next, let's copy the `.env.example` file to `.env`:
 
 ```bash
-cp env.example .env
+cp .env.example .env
 ```
 
 ## Running Exercises
@@ -63,7 +63,7 @@ Thanks so much for taking the course and I will see you in the next one.
   - If you don't have PNPM, install it first following [this link](https://pnpm.io/installation)
 
 - [ ] Set up environment variables
-  - Copy the `env.example` file to `.env`
+  - Copy the `.env.example` file to `.env`
   - We'll configure API keys in the next lesson
 
 - [ ] Test running an exercise with `pnpm dev`
