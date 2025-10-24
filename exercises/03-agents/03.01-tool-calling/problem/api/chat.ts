@@ -1,9 +1,14 @@
 import { google } from '@ai-sdk/google';
 import {
   convertToModelMessages,
+  stepCountIs,
   streamText,
+  tool,
   type UIMessage,
 } from 'ai';
+import { deletePath, fileSystemTools, readFile, writeFile } from './file-system-functionality.ts';
+import z from 'zod';
+
 
 export const POST = async (req: Request): Promise<Response> => {
   const body: { messages: UIMessage[] } = await req.json();
@@ -29,10 +34,39 @@ export const POST = async (req: Request): Promise<Response> => {
       Use markdown files to store information.
     `,
     // TODO: add the tools to the streamText call,
-    tools: TODO,
-    // TODO: add a custom stop condition to the streamText call
-    // to force the agent to stop after 10 steps have been taken
-    stopWhen: TODO,
+    tools: {
+      writeFile: tool({
+        name: 'writeFile',
+        inputSchema: z.object({
+          path: z.string(),
+          content: z.string(),
+        }),
+        execute: async ({ path, content }) => {
+          return fileSystemTools.writeFile(path, content);
+      }  })
+      ,
+
+      readFile: tool({
+        name: 'readFile',
+        inputSchema: z.object({
+          path: z.string(),
+        }),
+        execute: async ({ path }) => {
+          return fileSystemTools.readFile(path);
+        },
+      }),
+      deletePath: tool({
+        name: 'deletePath',
+        inputSchema: z.object({
+          path: z.string(),
+        }),
+        execute: async ({ path }) => {
+          return fileSystemTools.deletePath(path);
+        },
+      }),
+    },
+
+    stopWhen: stepCountIs(3),
   });
 
   return result.toUIMessageStreamResponse();
