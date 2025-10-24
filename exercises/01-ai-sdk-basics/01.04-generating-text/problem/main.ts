@@ -1,7 +1,7 @@
-import { google } from '@ai-sdk/google';
+import { openai } from '@ai-sdk/openai';
 import { generateText } from 'ai';
 
-const model = google('gemini-2.0-flash-lite');
+const model = openai('gpt-5');
 
 const prompt = 'What is the capital of France?';
 
