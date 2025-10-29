@@ -163,6 +163,10 @@ export const POST = async (req: Request): Promise<Response> => {
         type: 'text-end',
         id: textPartId,
       });
+
+      writer.write({
+        type: 'finish',
+      });
     },
   });
 
