@@ -29,8 +29,7 @@ export const POST = async (req: Request): Promise<Response> => {
   }
 
   if (!chat) {
-    const newChat = await createChat(id, messages);
-    chat = newChat;
+    await createChat(id, messages);
   } else {
     await appendToChatMessages(id, [mostRecentMessage]);
   }
