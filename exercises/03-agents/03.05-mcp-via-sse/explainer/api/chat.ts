@@ -7,6 +7,7 @@ import {
 } from 'ai';
 
 import { experimental_createMCPClient as createMCPClient } from 'ai';
+import { HttpMcpTransportLite } from './http-transport-lite.ts';
 
 if (!process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
   throw new Error('GITHUB_PERSONAL_ACCESS_TOKEN is not set');
@@ -17,13 +18,13 @@ export const POST = async (req: Request): Promise<Response> => {
   const { messages } = body;
 
   const mcpClient = await createMCPClient({
-    transport: {
-      type: 'sse',
-      url: 'https://api.githubcopilot.com/mcp',
+    // Use a custom transport instance to support HTTP with this AI SDK version.
+    transport: new HttpMcpTransportLite({
+      url: 'https://api.githubcopilot.com/mcp/',
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
       },
-    },
+    }),
   });
 
   const result = streamText({
