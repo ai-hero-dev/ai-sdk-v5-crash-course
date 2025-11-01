@@ -40,12 +40,9 @@ const App = () => {
           // _as well as the text_ to the
           // /api/chat route!
 
-          // NOTE: You have a helpful function below
-          // called fileToDataURL that you can use to
-          // convert the file to a data URL. This
-          // will be useful!
+          // NOTE: You can check `DataTransfer` class
           sendMessage({
-            // NOTE: 'parts' will be useful
+            // NOTE: 'files' will be useful
             text: input,
           });
 

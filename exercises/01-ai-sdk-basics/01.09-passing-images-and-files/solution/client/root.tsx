@@ -36,18 +36,12 @@ const App = () => {
           );
           const file = formData.get('file') as File;
 
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(file);
+
           sendMessage({
-            parts: [
-              {
-                type: 'text',
-                text: input,
-              },
-              {
-                type: 'file',
-                mediaType: file.type,
-                url: await fileToDataURL(file),
-              },
-            ],
+            text: input,
+            files: dataTransfer.files,
           });
           setInput('');
           setSelectedFile(null);
@@ -59,12 +53,3 @@ const App = () => {
 
 const root = createRoot(document.getElementById('root')!);
 root.render(<App />);
-
-const fileToDataURL = (file: File) => {
-  return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-};
