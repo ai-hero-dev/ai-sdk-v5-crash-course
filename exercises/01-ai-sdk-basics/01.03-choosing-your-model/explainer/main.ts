@@ -7,6 +7,8 @@ import { google } from '@ai-sdk/google';
 // Requires an ANTHROPIC_API_KEY environment variable in .env
 import { anthropic } from '@ai-sdk/anthropic';
 
-const model = openai('gpt-4o-mini');
+import { groq } from '@ai-sdk/groq';
+
+const model = openai('gpt-5-mini');
 
 console.dir(model, { depth: null });

@@ -1,9 +1,9 @@
-import { google } from '@ai-sdk/google';
+import { groq } from '@ai-sdk/groq';
 import { generateText } from 'ai';
 
-const model = google('gemini-2.0-flash-lite');
+const model = groq('gpt-oss-safeguard-20b');
 
-const prompt = 'What is the capital of France?';
+const prompt = 'whats the latest version of next.js? and what is your cut off knowledge date';
 
 const result = await generateText({
   model,
