@@ -15,7 +15,7 @@ We've provided it some detailed task context here:
 
 ```typescript
 const result = streamText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: `
     <task-context>
     You are a helpful TypeScript expert that can explain complex TypeScript code for beginner TypeScript developers. You will be given a complex TypeScript code and you will need to explain it in a way that is easy to understand.

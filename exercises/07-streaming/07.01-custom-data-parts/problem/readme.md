@@ -45,7 +45,7 @@ The `writer` variable, a `UIMessageStreamWriter`, has two really important metho
 const stream = createUIMessageStream<MyMessage>({
   execute: async ({ writer }) => {
     const streamTextResult = streamText({
-      model: google('gemini-2.0-flash'),
+      model: google('gemini-2.5-flash'),
       messages: modelMessages,
     });
 
@@ -66,7 +66,7 @@ After consuming the first stream, we call `streamText` again to get a follow-up 
 
 ```ts
 const followupSuggestionsResult = streamText({
-  model: google('gemini-2.0-flash'),
+  model: google('gemini-2.5-flash'),
   messages: [
     ...modelMessages,
     {

@@ -38,7 +38,7 @@ export const POST = async (req: Request): Promise<Response> => {
     .join('');
 
   const titleResult = generateText({
-    model: google('gemini-2.0-flash-lite'),
+    model: google('gemini-2.5-flash-lite'),
     prompt: `
       You are a helpful assistant that can generate titles for conversations.
 
@@ -66,7 +66,7 @@ export const POST = async (req: Request): Promise<Response> => {
   });
 
   const streamTextResult = streamText({
-    model: google('gemini-2.0-flash'),
+    model: google('gemini-2.5-flash'),
     messages: modelMessages,
     // TODO: declare the experimental_telemetry property using the following object:
     // - isEnabled: true

@@ -65,7 +65,7 @@ Now, we need to complete three TODO items in the prompt template:
 // TODO: Add some rules telling the model to use paragraphs in its output, and to use quotes from the content of the website to answer the question.
 // TODO: Add the output format telling the model to return only the summary, not any other text.
 const result = await streamText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: `
     <task-context>
     You are a helpful assistant that summarizes the content of a URL.

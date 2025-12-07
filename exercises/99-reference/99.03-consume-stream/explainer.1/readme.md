@@ -2,7 +2,7 @@ The AI SDK, by default, does not always wait for a stream to be completed. This 
 
 ## The Problem
 
-In this code here, we're calling `streamText`, passing "Hello, world!" to Gemini 2.0 Flash, and we have an `onFinish` on the `streamTextResult`.
+In this code here, we're calling `streamText`, passing "Hello, world!" to Gemini 2.5 Flash, and we have an `onFinish` on the `streamTextResult`.
 
 ```ts
 import { google } from '@ai-sdk/google';
@@ -11,7 +11,7 @@ import { streamText } from 'ai';
 console.log('Process starting...');
 
 const streamTextResult = streamText({
-  model: google('gemini-2.0-flash'),
+  model: google('gemini-2.5-flash'),
   prompt: 'Hello, world!',
   onFinish: () => {
     console.log('Stream finished!');
@@ -51,7 +51,7 @@ import { streamText } from 'ai';
 console.log('Process starting...');
 
 const streamTextResult = streamText({
-  model: google('gemini-2.0-flash'),
+  model: google('gemini-2.5-flash'),
   prompt: 'Hello, world!',
   onFinish: () => {
     console.log('Stream finished!');
@@ -88,7 +88,7 @@ import { streamText } from 'ai';
 console.log('Process starting...');
 
 const streamTextResult = streamText({
-  model: google('gemini-2.0-flash'),
+  model: google('gemini-2.5-flash'),
   prompt: 'Hello, world!',
   onFinish: () => {
     console.log('Stream finished!');
@@ -124,7 +124,7 @@ import { consumeStream, streamText } from 'ai';
 console.log('Process starting...');
 
 const streamTextResult = streamText({
-  model: google('gemini-2.0-flash'),
+  model: google('gemini-2.5-flash'),
   prompt: 'Hello, world!',
   onFinish: () => {
     console.log('Stream finished!');

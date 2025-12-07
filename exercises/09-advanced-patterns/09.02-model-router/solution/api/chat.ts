@@ -9,8 +9,8 @@ import {
   type UIMessage,
 } from 'ai';
 
-const ADVANCED_MODEL = google('gemini-2.0-flash');
-const BASIC_MODEL = google('gemini-2.0-flash-lite');
+const ADVANCED_MODEL = google('gemini-2.5-flash');
+const BASIC_MODEL = google('gemini-2.5-flash-lite');
 
 export type MyMessage = UIMessage<{
   model: 'advanced' | 'basic';

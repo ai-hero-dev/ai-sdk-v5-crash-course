@@ -30,7 +30,7 @@ We also need to define a schema using Zod to ensure we get the correct data stru
 // since we'll need to use structured outputs to reliably
 // generate multiple suggestions
 const followupSuggestionsResult = streamText({
-  model: google('gemini-2.0-flash'),
+  model: google('gemini-2.5-flash'),
   // TODO: Define the schema for the suggestions
   // using zod
   schema: TODO,

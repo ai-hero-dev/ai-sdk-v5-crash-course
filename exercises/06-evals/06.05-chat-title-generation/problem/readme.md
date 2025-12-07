@@ -2,11 +2,11 @@ Now we understand the basics about evals and how you can use LLM as a judge, sco
 
 ## The Eval
 
-We have an eval here called chat title generation that simply calls `generateText` passing in `google('gemini-2.0-flash-lite')` and says "generate me a title based on an input.":
+We have an eval here called chat title generation that simply calls `generateText` passing in `google('gemini-2.5-flash-lite')` and says "generate me a title based on an input.":
 
 ```typescript
 const result = await generateText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: `
     Generate me a title:
     ${input}
@@ -52,7 +52,7 @@ Here's how I recommend you complete this exercise:
 
 ```typescript
 const result = await generateText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: `
     Generate me a title:
     ${input}

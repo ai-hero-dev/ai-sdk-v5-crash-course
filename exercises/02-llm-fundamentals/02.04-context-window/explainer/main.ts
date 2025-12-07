@@ -25,7 +25,7 @@ const tokens = tokenize(text);
 console.log(`Tokens length: ${tokens.length}`);
 
 await generateText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: text,
   // NOTE: by default, the AI SDK retries the request 3 times
   // if it fails. We can prevent this by setting maxRetries to 0.

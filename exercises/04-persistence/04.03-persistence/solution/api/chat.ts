@@ -36,7 +36,7 @@ export const POST = async (req: Request): Promise<Response> => {
   }
 
   const result = streamText({
-    model: google('gemini-2.0-flash-001'),
+    model: google('gemini-2.5-flash'),
     messages: convertToModelMessages(messages),
   });
 

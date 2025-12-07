@@ -6,7 +6,7 @@ const INPUT = `Do some research on induction hobs and how I can replace a 100cm 
 // NOTE: A good output would be: "Induction hobs vs AGA cookers"
 
 const result = await streamText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   // TODO: Rewrite this prompt using the Anthropic template from
   // the previous exercise.
   // You will NOT need all of the sections from the template.

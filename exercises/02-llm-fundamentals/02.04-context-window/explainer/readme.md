@@ -43,7 +43,7 @@ However, we're expecting it to fail, so we're going to set it to zero:
 
 ```typescript
 await generateText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: text,
   maxRetries: 0,
 });

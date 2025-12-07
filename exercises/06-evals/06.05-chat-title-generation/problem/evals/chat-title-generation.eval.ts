@@ -31,7 +31,7 @@ evalite('Chat Title Generation', {
   data: () => dataForEvalite,
   task: async (input) => {
     const result = await generateText({
-      model: google('gemini-2.0-flash-lite'),
+      model: google('gemini-2.5-flash-lite'),
       prompt: `
         Generate me a title:
         ${input}
