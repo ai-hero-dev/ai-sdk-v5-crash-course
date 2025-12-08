@@ -142,6 +142,24 @@ export const runLocalDevServer = async (opts: {
 
   viteServer.printUrls();
 
+  if (process.stdin.isTTY) {
+    process.stdin.setRawMode(true);
+  }
+
+  process.stdin.on('data', async (chunk) => {
+    const key = chunk.toString();
+    if (key === 'q') {
+      await viteServer.close();
+      await honoServer?.close();
+      if (process.stdin.isTTY) process.stdin.setRawMode(false);
+      process.stdin.pause();
+      // continue app...
+    } else if (key === '\u0003') {
+      // Ctrl+C pass-through
+      process.exit(0);
+    }
+  });
+
   return {
     close: () => {
       viteServer.close();
