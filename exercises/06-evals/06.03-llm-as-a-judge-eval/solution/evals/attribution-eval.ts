@@ -19,7 +19,7 @@ export const attributionToChainOfThoughtPaper = createScorer<
   name: 'Attribution',
   scorer: async ({ input, output, expected }) => {
     const result = await generateObject({
-      model: google('gemini-2.0-flash'),
+      model: google('gemini-2.5-flash'),
       system: `
         You are a helpful assistant that can answer questions about the chain of thought prompting paper.
 

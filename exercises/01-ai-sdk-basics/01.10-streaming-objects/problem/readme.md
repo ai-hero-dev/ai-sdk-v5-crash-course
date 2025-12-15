@@ -28,7 +28,7 @@ const finalText = await stream.text;
 
 Our first to-do is to call `streamObject` from the AI SDK, passing in:
 
-1. The model (Gemini 2.0 Flash)
+1. The model (Gemini 2.5 Flash)
 2. A prompt asking for facts about the imaginary planet
 3. A Zod schema defining the structure we want back
 

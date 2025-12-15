@@ -28,7 +28,7 @@ export const POST = async (req: Request): Promise<Response> => {
   const stream = createUIMessageStream<MyMessage>({
     execute: async ({ writer }) => {
       const streamTextResult = streamText({
-        model: google('gemini-2.0-flash'),
+        model: google('gemini-2.5-flash'),
         messages: modelMessages,
       });
 
@@ -37,7 +37,7 @@ export const POST = async (req: Request): Promise<Response> => {
       await streamTextResult.consumeStream();
 
       const followupSuggestionsResult = streamObject({
-        model: google('gemini-2.0-flash'),
+        model: google('gemini-2.5-flash'),
         schema: z.object({
           suggestions: z.array(z.string()),
         }),

@@ -8,7 +8,7 @@ Let's look at the problem we need to solve:
 import { google } from '@ai-sdk/google';
 import { streamText } from 'ai';
 
-const model = google('gemini-2.0-flash');
+const model = google('gemini-2.5-flash');
 
 const prompt =
   'Give me the first paragraph of a story about an imaginary planet.';

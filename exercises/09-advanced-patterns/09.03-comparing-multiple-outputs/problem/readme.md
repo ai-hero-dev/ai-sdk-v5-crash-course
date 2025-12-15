@@ -10,12 +10,12 @@ The basic setup uses a `createUIMessageStream` again, with two `streamText` call
 const stream = createUIMessageStream<MyMessage>({
   execute: async ({ writer }) => {
     const firstStreamResult = streamText({
-      model: google('gemini-2.0-flash-lite'),
+      model: google('gemini-2.5-flash-lite'),
       messages: modelMessages,
     });
 
     const secondStreamResult = streamText({
-      model: google('gemini-2.0-flash'),
+      model: google('gemini-2.5-flash'),
       messages: modelMessages,
     });
 
@@ -26,7 +26,7 @@ const stream = createUIMessageStream<MyMessage>({
 });
 ```
 
-Both stream calls are being passed exactly the same messages, but we're using two different models - one using `gemini-2.0-flash-lite` and the other using `gemini-2.0-flash`.
+Both stream calls are being passed exactly the same messages, but we're using two different models - one using `gemini-2.5-flash-lite` and the other using `gemini-2.5-flash`.
 
 Just below this, we need to use `Promise.all` to call `streamModelText` for each model and pass in the appropriate model.
 

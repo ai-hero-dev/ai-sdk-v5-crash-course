@@ -18,7 +18,7 @@ export const POST = async (req: Request): Promise<Response> => {
     convertToModelMessages(messages);
 
   const streamTextResult = streamText({
-    model: google('gemini-2.0-flash'),
+    model: google('gemini-2.5-flash'),
     messages: modelMessages,
   });
 
@@ -30,7 +30,7 @@ export const POST = async (req: Request): Promise<Response> => {
 };
 ```
 
-We're calling Gemini 2.0 Flash, which is a model that can handle images. Not all models can handle images, so check your provider details for more info.
+We're calling Gemini 2.5 Flash, which is a model that can handle images. Not all models can handle images, so check your provider details for more info.
 
 We're converting the messages that we get from the body into `ModelMessage`s, passing those messages directly into `streamText`, then turning that into a `UIMessageStream`, which we stream back to the frontend.
 

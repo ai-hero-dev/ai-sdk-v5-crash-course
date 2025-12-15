@@ -4,7 +4,7 @@ import { streamText } from 'ai';
 const INPUT = `Do some research on induction hobs and how I can replace a 100cm wide AGA cooker with an induction range cooker. Which is the cheapest, which is the best?`;
 
 const result = await streamText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: `
     <task-context>
     You are a helpful assistant that can generate titles for conversations.

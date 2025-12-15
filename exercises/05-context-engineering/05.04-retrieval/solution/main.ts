@@ -37,7 +37,7 @@ if (!rawContent) {
 }
 
 const result = await streamText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   prompt: `
     <task-context>
     You are a helpful assistant that summarizes the content of a URL.
