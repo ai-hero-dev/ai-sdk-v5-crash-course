@@ -19,8 +19,8 @@ We're first going to look at a couple of imported functions from [`ai`](./api/ch
 Before we start streaming, we need to initiate an MCP client. This will use the [`StdioMCPTransport`](./api/chat.ts) from `ai/mcp-stdio`.
 
 ```ts
-import { experimental_createMCPClient as createMCPClient } from 'ai';
-import { Experimental_StdioMCPTransport as StdioMCPTransport } from 'ai/mcp-stdio';
+import { experimental_createMCPClient as createMCPClient } from '@ai-sdk/mcp';
+import { Experimental_StdioMCPTransport as StdioMCPTransport } from '@ai-sdk/mcp/mcp-stdio';
 ```
 
 What this is going to do is run a process locally and monitor its `stdin` and `stdout` in order to communicate with it.
