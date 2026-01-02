@@ -24,3 +24,23 @@
   - 03.05 explainer/api/chat.ts
   - 03.04 problem/readme.md (code examples)
 - All PRD items now pass:true
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- convertToModelMessages async migration (breaking change)
+  - Added await to 34 files across exercises
+  - Updated 6 readmes with code examples
+  - 99.01 explainer main.ts wrapped in async IIFE
+  - Marked PRD item as passes:true
+
+### Files updated
+- 01.07, 01.08, 01.09 (basics)
+- 03.01, 03.03, 03.04, 03.05 (agents/MCP)
+- 04.01, 04.02, 04.03, 04.05 (persistence)
+- 06.07 (langfuse)
+- 07.01, 07.02, 07.03 (streaming)
+- 09.01, 09.02, 09.03, 09.04 (advanced)
+- 99.01, 99.09 (reference)

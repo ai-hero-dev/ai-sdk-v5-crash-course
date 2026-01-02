@@ -23,7 +23,7 @@ export const POST = async (req: Request): Promise<Response> => {
   const messages: UIMessage[] = body.messages;
 
   const modelMessages: ModelMessage[] =
-    convertToModelMessages(messages);
+    await convertToModelMessages(messages);
 
   const stream = createUIMessageStream<MyMessage>({
     execute: async ({ writer }) => {

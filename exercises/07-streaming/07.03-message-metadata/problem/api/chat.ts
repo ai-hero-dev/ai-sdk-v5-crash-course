@@ -15,7 +15,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   const result = streamText({
     model: google('gemini-2.5-flash'),
-    messages: convertToModelMessages(messages),
+    messages: await convertToModelMessages(messages),
   });
 
   // TODO: Calculate the start time of the stream

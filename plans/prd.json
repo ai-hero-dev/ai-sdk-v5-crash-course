@@ -107,7 +107,7 @@
       "exercises/99-reference/99.01-ui-messages-vs-model-messages/explainer/*",
       "exercises/99-reference/99.09-start-and-finish-parts/explainer/api/chat.ts"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "content",

@@ -11,7 +11,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   const result = streamText({
     model: google('gemini-2.5-flash'),
-    messages: convertToModelMessages(messages),
+    messages: await convertToModelMessages(messages),
     onFinish: ({ response }) => {
       // 'response.messages' is an array of ToolModelMessage and AssistantModelMessage,
       // which are the model messages that were generated during the stream.
