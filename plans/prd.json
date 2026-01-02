@@ -13,6 +13,19 @@
   },
   {
     "category": "content",
+    "lesson": "03.05",
+    "description": "Update MCP via SSE to use transport object syntax",
+    "notes": "plans/03.05-notes.md",
+    "steps": [
+      "Replace current transport with { type: 'sse', url, headers } syntax",
+      "Add @modelcontextprotocol/sdk as dependency",
+      "Use GitHub Copilot MCP endpoint as example",
+      "Fixes 'Method not allowed' error from plain object transport"
+    ],
+    "passes": false
+  },
+  {
+    "category": "content",
     "lesson": "01.11",
     "description": "Single solution demonstrates streamText + Output.object pattern",
     "steps": [
