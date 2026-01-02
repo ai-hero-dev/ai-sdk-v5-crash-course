@@ -27,15 +27,14 @@
   {
     "category": "content",
     "lesson": "01.11",
-    "description": "Single solution demonstrates streamText + Output.object pattern",
+    "description": "Two solutions: new way (streamText + Output.object) and old way (streamObject)",
     "steps": [
-      "Solution uses streamText instead of generateText",
-      "Solution passes Output.object with facts schema",
-      "Solution iterates over partialOutputStream",
-      "Solution logs partial objects showing incremental updates",
-      "Solution should be in solution, not solution.1"
+      "solution.1: streamText + Output.object + partialOutputStream (new v6 way)",
+      "solution.2: streamObject (old way, still supported in v6)",
+      "streamObject used elsewhere in repo, not going away",
+      "Avoids updating every video in course"
     ],
-    "passes": true
+    "passes": false
   },
   {
     "category": "content",
