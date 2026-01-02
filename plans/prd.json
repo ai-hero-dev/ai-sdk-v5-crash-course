@@ -25,9 +25,9 @@
   },
   {
     "category": "content",
-    "lesson": "03.05",
+    "lesson": "03.06",
     "description": "Update MCP via SSE to use transport object syntax",
-    "notes": "plans/03.05-notes.md",
+    "notes": "plans/03.06-notes.md",
     "steps": [
       "Replace current transport with { type: 'sse', url, headers } syntax",
       "Add @modelcontextprotocol/sdk as dependency",
@@ -50,30 +50,30 @@
   },
   {
     "category": "content",
-    "lesson": "03.04, 03.05",
+    "lesson": "03.05, 03.06",
     "description": "Update MCP imports to use @ai-sdk/mcp package",
     "steps": [
       "Change createMCPClient import from 'ai' to '@ai-sdk/mcp'",
       "Change StdioMCPTransport import from 'ai/mcp-stdio' to '@ai-sdk/mcp/mcp-stdio'",
-      "Update 03.04 solution/api/chat.ts",
-      "Update 03.05 explainer/api/chat.ts",
-      "Update 03.04 problem readme.md",
-      "03.04 problem already correct"
+      "Update 03.05 solution/api/chat.ts",
+      "Update 03.06 explainer/api/chat.ts",
+      "Update 03.05 problem readme.md",
+      "03.05 problem already correct"
     ],
     "passes": true
   },
   {
     "category": "content",
-    "lesson": "03.0x (before MCP)",
+    "lesson": "03.04",
     "description": "New exercise: ToolLoopAgent + createAgentUIStreamResponse",
     "notes": "plans/03.0x-tool-loop-agent-notes.md",
     "steps": [
       "Introduce ToolLoopAgent from AI SDK v6",
       "Show api/client setup with createAgentUIStreamResponse",
       "Teach InferAgentUIMessage for typed frontends",
-      "Insert before 03.04-mcp-via-stdio (renumber MCP lessons)"
+      "MCP lessons renumbered to 03.05 and 03.06"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "breaking-change",
@@ -90,8 +90,8 @@
       "exercises/01-ai-sdk-basics/01.09-passing-images-and-files/*/api/chat.ts",
       "exercises/03-agents/03.01-tool-calling/*/api/chat.ts",
       "exercises/03-agents/03.03-showing-tools-in-the-frontend/*/api/chat.ts",
-      "exercises/03-agents/03.04-mcp-via-stdio/*/api/chat.ts",
-      "exercises/03-agents/03.05-mcp-via-sse/explainer/api/chat.ts",
+      "exercises/03-agents/03.05-mcp-via-stdio/*/api/chat.ts",
+      "exercises/03-agents/03.06-mcp-via-sse/explainer/api/chat.ts",
       "exercises/04-persistence/04.01-on-finish/explainer/api/chat.ts",
       "exercises/04-persistence/04.02-pass-chat-id-to-the-api/*/api/chat.ts",
       "exercises/04-persistence/04.03-persistence/*/api/chat.ts",

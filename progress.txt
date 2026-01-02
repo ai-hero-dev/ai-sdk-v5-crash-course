@@ -44,3 +44,27 @@
 - 07.01, 07.02, 07.03 (streaming)
 - 09.01, 09.02, 09.03, 09.04 (advanced)
 - 99.01, 99.09 (reference)
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- 03.04 ToolLoopAgent explainer (NEW)
+  - Created explainer with ToolLoopAgent + createAgentUIStreamResponse
+  - Shows InferAgentUIMessage for type-safe frontend
+  - No stopWhen needed (defaults to 20 steps)
+  - Uses instructions instead of system
+
+### Renumbered lessons
+- 03.04-mcp-via-stdio → 03.05-mcp-via-stdio
+- 03.05-mcp-via-sse → 03.06-mcp-via-sse
+
+### Files created
+- exercises/03-agents/03.04-tool-loop-agent/explainer/api/chat.ts
+- exercises/03-agents/03.04-tool-loop-agent/explainer/api/file-system-functionality.ts
+- exercises/03-agents/03.04-tool-loop-agent/explainer/client/root.tsx
+- exercises/03-agents/03.04-tool-loop-agent/explainer/client/components.tsx
+- exercises/03-agents/03.04-tool-loop-agent/explainer/client/tailwind.css
+- exercises/03-agents/03.04-tool-loop-agent/explainer/main.ts
+- exercises/03-agents/03.04-tool-loop-agent/explainer/readme.md
