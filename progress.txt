@@ -1,0 +1,11 @@
+## 2026-01-02
+
+### Completed
+- 01.11 streaming objects: problem has TODOs, solution in solution/ folder uses streamText+Output.object+partialObjectStream
+- Marked both 01.11 PRD items as passes:true
+
+### Remaining
+- 03.05: Code already uses correct SSE transport syntax but @modelcontextprotocol/sdk missing from package.json deps
+
+### Notes
+- solution.1 and solution.2 folders were deleted in favor of single solution/ folder

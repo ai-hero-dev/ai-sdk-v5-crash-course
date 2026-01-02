@@ -1,54 +1,32 @@
-It's nice being able to stream text from an LLM, but sometimes you want that output to be more structured. For instance, you may want it to provide multiple queries that you search Google with.
+In 01.10, we used `generateText` with `Output.object` to get structured data from an LLM. But what if we want to stream that structured data as it's being generated?
 
-In other words, sometimes we want text back from the LLM, but sometimes we want _objects_. We want to define the shapes of those objects, pass that shape to the LLM, and then get that shape back.
+Just like we can use `streamText` instead of `generateText` for streaming text, we can use `streamText` with `Output.object` to stream structured objects.
 
 ## The Problem
 
-Our starting code calls `streamText` to generate a story about an imaginary planet:
+Our starting code uses `generateText` with `Output.object` to get facts about an imaginary planet:
 
 ```typescript
-const stream = streamText({
+const factsResult = await generateText({
   model,
-  prompt:
-    'Give me the first paragraph of a story about an imaginary planet.',
+  prompt: `Give me some facts about the imaginary planet...`,
+  output: Output.object({
+    schema: z.object({
+      facts: z.array(z.string()).describe('...'),
+    }),
+  }),
 });
+
+console.log(factsResult.output);
 ```
 
-We then write that to `stdout` and await the final text:
+This works, but we have to wait for the entire response before we see any output.
 
-```typescript
-for await (const chunk of stream.textStream) {
-  process.stdout.write(chunk);
-}
+## The Challenge: Stream the Structured Object
 
-const finalText = await stream.text;
-```
+Your task is to convert the `generateText` call to `streamText`, keeping the same `Output.object` configuration.
 
-## The Challenge: Stream a Structured Object
-
-Our first to-do is to call `streamObject` from the AI SDK, passing in:
-
-1. The model (Gemini 2.5 Flash)
-2. A prompt asking for facts about the imaginary planet
-3. A Zod schema defining the structure we want back
-
-Here's where we need to add our code:
-
-```ts
-// TODO: Replace this with a call to streamObject, passing:
-// - The model, same as above
-// - The prompt, asking for facts about the imaginary planet,
-//   passing in the finalText as the story
-// - The schema, which should be an object with a facts property
-//   that is an array of strings
-const factsResult = TODO;
-```
-
-The schema we need to define should be an object with a `facts` property that's an array of strings. LLMs are very good at working with Zod schemas, so autocomplete should help you define this properly.
-
-## Handling the Stream
-
-After we get our structured data stream, we'll log each chunk of the partial object stream:
+Then, instead of logging `factsResult.output`, iterate over `factsResult.partialObjectStream` to see partial objects as they arrive:
 
 ```typescript
 for await (const chunk of factsResult.partialObjectStream) {
@@ -56,28 +34,22 @@ for await (const chunk of factsResult.partialObjectStream) {
 }
 ```
 
-This will show the object as it's being constructed by the LLM in real-time.
-
 When you run this exercise, you should see:
 
 1. The text of the story streaming in first
 2. A series of object logs showing the current shape of the facts object as it's being generated
 
-The final result should be an array of facts about the imaginary planet described in the paragraph that was generated.
+The partial objects will show incremental updates like:
+- `{ facts: [] }`
+- `{ facts: ['The planet...'] }`
+- `{ facts: ['The planet...', 'Its atmosphere...'] }`
 
 ## Steps To Complete
 
-- [ ] Call the `streamObject` function and store the result in `factsResult`
-  - Import `streamObject` from 'ai' if not already imported
+- [ ] Replace `generateText` with `streamText` (no `await` needed)
 
-- [ ] Pass the `model` parameter to `streamObject` (same as used with `streamText`)
+- [ ] Keep the `Output.object` configuration exactly the same
 
-- [ ] Create a prompt that asks for facts about the imaginary planet
-  - Include the `finalText` in your prompt so the LLM knows what story to reference
+- [ ] Replace `console.log(factsResult.output)` with a for-await loop over `factsResult.partialObjectStream`
 
-- [ ] Define a Zod schema for an object with a `facts` property that is an array of strings
-  - Import `z` from 'zod' if not already imported
-  - Use the `z.array` and `z.string` functions to define the schema
-  - Use the `z.describe` function to describe the schema, if you like
-
-- [ ] Run the exercise with `pnpm run dev` to see both the streaming text and the structured object being built
+- [ ] Run the exercise with `pnpm run dev` to see both the streaming text and the structured object being built incrementally

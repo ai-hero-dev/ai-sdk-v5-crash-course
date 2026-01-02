@@ -9,7 +9,7 @@
       "Learner uses partialOutputStream to iterate over streaming chunks",
       "Learner logs each partial object as it arrives"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "content",
@@ -35,6 +35,6 @@
       "Solution logs partial objects showing incremental updates",
       "Solution should be in solution, not solution.1"
     ],
-    "passes": false
+    "passes": true
   }
 ]
