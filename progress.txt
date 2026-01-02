@@ -181,3 +181,16 @@
 
 ### PRD
 - All items now passes:true
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- @ai-sdk/devtools pnpm install fix
+  - Changed version from ^1.0.0 to ^0.0.3 (latest release is 0.0.3)
+  - pnpm install now succeeds
+
+### Remaining PRD items (passes:false)
+- 04.04 providerMetadata type incompatibility
+- 06.02, 06.03 evalite createScorer 3rd type argument

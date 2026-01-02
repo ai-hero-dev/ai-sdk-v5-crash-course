@@ -148,5 +148,43 @@
       "Uses sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses"
     ],
     "passes": true
+  },
+  {
+    "category": "breaking-change",
+    "lesson": "global",
+    "description": "Run pnpm install to install @ai-sdk/devtools",
+    "steps": [
+      "Package in package.json but not installed",
+      "Run pnpm install"
+    ],
+    "passes": true
+  },
+  {
+    "category": "breaking-change",
+    "lesson": "04.04",
+    "description": "Fix providerMetadata type incompatibility with V6",
+    "steps": [
+      "V6 SharedV3ProviderMetadata allows undefined in JSONObject",
+      "Update MyProviderMetadata type in types.ts to match"
+    ],
+    "files": [
+      "exercises/04-persistence/04.04-persistence-in-a-normalized-db/explainer/types.ts"
+    ],
+    "passes": false
+  },
+  {
+    "category": "breaking-change",
+    "lesson": "06.02, 06.03",
+    "description": "evalite createScorer now requires 3 type arguments",
+    "steps": [
+      "Add 3rd type argument (Expected) to createScorer generics",
+      "Update problem and solution files"
+    ],
+    "files": [
+      "exercises/06-evals/06.02-deterministic-eval/problem/evals/question-answerer.eval.ts",
+      "exercises/06-evals/06.03-llm-as-a-judge-eval/problem/evals/attribution-eval.ts",
+      "exercises/06-evals/06.03-llm-as-a-judge-eval/solution/evals/attribution-eval.ts"
+    ],
+    "passes": false
   }
 ]
