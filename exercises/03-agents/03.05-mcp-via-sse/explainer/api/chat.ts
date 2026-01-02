@@ -6,7 +6,7 @@ import {
   type UIMessage,
 } from 'ai';
 
-import { experimental_createMCPClient as createMCPClient } from 'ai';
+import { experimental_createMCPClient as createMCPClient } from '@ai-sdk/mcp';
 
 if (!process.env.GITHUB_PERSONAL_ACCESS_TOKEN) {
   throw new Error('GITHUB_PERSONAL_ACCESS_TOKEN is not set');

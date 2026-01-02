@@ -13,3 +13,14 @@
 
 ### Notes
 - solution.1 and solution.2 folders were deleted in favor of single solution/ folder
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- 03.04/03.05 MCP imports: updated to @ai-sdk/mcp package
+  - 03.04 solution/api/chat.ts
+  - 03.05 explainer/api/chat.ts
+  - 03.04 problem/readme.md (code examples)
+- All PRD items now pass:true

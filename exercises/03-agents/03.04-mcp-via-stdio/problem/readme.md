@@ -14,13 +14,13 @@ Luckily, the AI SDK has a few functions that help you do that.
 
 In this exercise, we'll be working in the [`POST`](./api/chat.ts) route only.
 
-We're first going to look at a couple of imported functions from [`ai`](./api/chat.ts) and `ai/mcp-stdio`. These are experimental, of course, because everything in MCP is experimental, and we're going to use them just below in our code.
+We're first going to look at a couple of imported functions from [`@ai-sdk/mcp`](./api/chat.ts). These are experimental, of course, because everything in MCP is experimental, and we're going to use them just below in our code.
 
-Before we start streaming, we need to initiate an MCP client. This will use the [`StdioMCPTransport`](./api/chat.ts) from `ai/mcp-stdio`.
+Before we start streaming, we need to initiate an MCP client. This will use the [`StdioMCPTransport`](./api/chat.ts) from `@ai-sdk/mcp/mcp-stdio`.
 
 ```ts
-import { experimental_createMCPClient as createMCPClient } from 'ai';
-import { Experimental_StdioMCPTransport as StdioMCPTransport } from 'ai/mcp-stdio';
+import { experimental_createMCPClient as createMCPClient } from '@ai-sdk/mcp';
+import { Experimental_StdioMCPTransport as StdioMCPTransport } from '@ai-sdk/mcp/mcp-stdio';
 ```
 
 What this is going to do is run a process locally and monitor its `stdin` and `stdout` in order to communicate with it.

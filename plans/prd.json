@@ -36,5 +36,19 @@
       "Solution should be in solution, not solution.1"
     ],
     "passes": true
+  },
+  {
+    "category": "content",
+    "lesson": "03.04, 03.05",
+    "description": "Update MCP imports to use @ai-sdk/mcp package",
+    "steps": [
+      "Change createMCPClient import from 'ai' to '@ai-sdk/mcp'",
+      "Change StdioMCPTransport import from 'ai/mcp-stdio' to '@ai-sdk/mcp/mcp-stdio'",
+      "Update 03.04 solution/api/chat.ts",
+      "Update 03.05 explainer/api/chat.ts",
+      "Update 03.04 problem readme.md",
+      "03.04 problem already correct"
+    ],
+    "passes": true
   }
 ]
