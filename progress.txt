@@ -68,3 +68,17 @@
 - exercises/03-agents/03.04-tool-loop-agent/explainer/client/tailwind.css
 - exercises/03-agents/03.04-tool-loop-agent/explainer/main.ts
 - exercises/03-agents/03.04-tool-loop-agent/explainer/readme.md
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- 01.11 two solutions for streaming objects
+  - Renamed solution/ → solution.1/ (streamText + Output.object, new v6 way)
+  - Created solution.2/main.ts (streamObject, old way still supported)
+  - Marked PRD item as passes:true
+
+### Notes
+- streamObject used elsewhere in repo (07.02, 08.04, 09.04), not going away
+- Two solutions lets learners see both approaches

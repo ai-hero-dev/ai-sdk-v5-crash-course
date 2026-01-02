@@ -46,7 +46,7 @@
       "streamObject used elsewhere in repo, not going away",
       "Avoids updating every video in course"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "content",
