@@ -9,11 +9,11 @@
       "Mention convertToModelMessages is now async",
       "Brief overview, not exhaustive"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "content",
-    "lesson": "01.11",
+    "lesson": "01.12",
     "description": "TODO comment guides learner to convert generateText to streamText",
     "steps": [
       "Learner reads TODO asking to replace generateText with streamText",
@@ -38,7 +38,7 @@
   },
   {
     "category": "content",
-    "lesson": "01.11",
+    "lesson": "01.12",
     "description": "Two solutions: new way (streamText + Output.object) and old way (streamObject)",
     "steps": [
       "solution.1: streamText + Output.object + partialOutputStream (new v6 way)",
@@ -111,7 +111,7 @@
   },
   {
     "category": "content",
-    "lesson": "01.12 (end of basics)",
+    "lesson": "01.13 (end of basics)",
     "description": "New explainer: AI SDK v6 DevTools basics",
     "notes": "plans/devtools-notes.md",
     "steps": [
