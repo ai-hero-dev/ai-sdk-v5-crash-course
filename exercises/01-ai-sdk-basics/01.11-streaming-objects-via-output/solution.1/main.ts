@@ -30,6 +30,6 @@ const factsResult = streamText({
   }),
 });
 
-for await (const chunk of factsResult.partialObjectStream) {
+for await (const chunk of factsResult.partialOutputStream) {
   console.log(chunk);
 }
