@@ -27,7 +27,8 @@ D: The answer does not provide sources from the paper.
 
 export const attributionToChainOfThoughtPaper = createScorer<
   string,
-  string
+  string,
+  undefined
 >({
   name: 'Attribution',
   scorer: async ({ input, output }) => {

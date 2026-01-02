@@ -181,10 +181,9 @@
       "Update problem and solution files"
     ],
     "files": [
-      "exercises/06-evals/06.02-deterministic-eval/problem/evals/question-answerer.eval.ts",
       "exercises/06-evals/06.03-llm-as-a-judge-eval/problem/evals/attribution-eval.ts",
       "exercises/06-evals/06.03-llm-as-a-judge-eval/solution/evals/attribution-eval.ts"
     ],
-    "passes": false
+    "passes": true
   }
 ]

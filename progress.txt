@@ -205,3 +205,20 @@
 
 ### Files updated
 - exercises/04-persistence/04.04-persistence-in-a-normalized-db/explainer/types.ts
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- 06.03 evalite createScorer 3rd type argument fix
+  - evalite 1.0.0-beta requires 3 type args: `<TInput, TOutput, TExpected>`
+  - Added `undefined` as 3rd arg to problem and solution attribution-eval.ts
+  - 06.02 doesn't use createScorer (uses inline scorers), no fix needed
+
+### Files updated
+- exercises/06-evals/06.03-llm-as-a-judge-eval/problem/evals/attribution-eval.ts
+- exercises/06-evals/06.03-llm-as-a-judge-eval/solution/evals/attribution-eval.ts
+
+### PRD
+- All items now passes:true - PRD COMPLETE
