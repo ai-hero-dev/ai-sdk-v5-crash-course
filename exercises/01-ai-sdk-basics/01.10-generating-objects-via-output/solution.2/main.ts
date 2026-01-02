@@ -1,5 +1,5 @@
 import { google } from '@ai-sdk/google';
-import { streamObject, streamText } from 'ai';
+import { generateObject, streamText } from 'ai';
 import z from 'zod';
 
 const model = google('gemini-2.5-flash');
@@ -16,7 +16,7 @@ for await (const chunk of stream.textStream) {
 
 const finalText = await stream.text;
 
-const factsResult = streamObject({
+const factsResult = await generateObject({
   model,
   prompt: `Give me some facts about the imaginary planet. Here's the story: ${finalText}`,
   schema: z.object({
@@ -28,10 +28,4 @@ const factsResult = streamObject({
   }),
 });
 
-for await (const chunk of factsResult.partialObjectStream) {
-  console.log(chunk);
-}
-
-const object = await factsResult.object;
-
-console.log(object);
+console.log(factsResult.object);
