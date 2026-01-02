@@ -50,5 +50,95 @@
       "03.04 problem already correct"
     ],
     "passes": true
+  },
+  {
+    "category": "content",
+    "lesson": "03.0x (before MCP)",
+    "description": "New exercise: ToolLoopAgent + createAgentUIStreamResponse",
+    "notes": "plans/03.0x-tool-loop-agent-notes.md",
+    "steps": [
+      "Introduce ToolLoopAgent from AI SDK v6",
+      "Show api/client setup with createAgentUIStreamResponse",
+      "Teach InferAgentUIMessage for typed frontends",
+      "Insert before 03.04-mcp-via-stdio (renumber MCP lessons)"
+    ],
+    "passes": false
+  },
+  {
+    "category": "breaking-change",
+    "lesson": "global",
+    "description": "convertToModelMessages is now async in v6 - add await",
+    "steps": [
+      "Search all uses of convertToModelMessages",
+      "Add await before each call",
+      "Update readmes that show the pattern"
+    ],
+    "files": [
+      "exercises/01-ai-sdk-basics/01.07-stream-text-to-ui/solution/api/chat.ts",
+      "exercises/01-ai-sdk-basics/01.08-system-prompts/explainer/api/chat.ts",
+      "exercises/01-ai-sdk-basics/01.09-passing-images-and-files/*/api/chat.ts",
+      "exercises/03-agents/03.01-tool-calling/*/api/chat.ts",
+      "exercises/03-agents/03.03-showing-tools-in-the-frontend/*/api/chat.ts",
+      "exercises/03-agents/03.04-mcp-via-stdio/*/api/chat.ts",
+      "exercises/03-agents/03.05-mcp-via-sse/explainer/api/chat.ts",
+      "exercises/04-persistence/04.01-on-finish/explainer/api/chat.ts",
+      "exercises/04-persistence/04.02-pass-chat-id-to-the-api/*/api/chat.ts",
+      "exercises/04-persistence/04.03-persistence/*/api/chat.ts",
+      "exercises/04-persistence/04.05-validating-messages/explainer/api/chat.ts",
+      "exercises/06-evals/06.07-langfuse-basics/*/api/chat.ts",
+      "exercises/07-streaming/07.01-custom-data-parts/*/api/chat.ts",
+      "exercises/07-streaming/07.02-custom-data-parts-with-stream-object/*/api/chat.ts",
+      "exercises/07-streaming/07.03-message-metadata/*/api/chat.ts",
+      "exercises/09-advanced-patterns/09.01-guardrails/*/api/chat.ts",
+      "exercises/09-advanced-patterns/09.02-model-router/*/api/chat.ts",
+      "exercises/09-advanced-patterns/09.03-comparing-multiple-outputs/*/api/chat.ts",
+      "exercises/09-advanced-patterns/09.04-research-workflow/*/api/chat.ts",
+      "exercises/99-reference/99.01-ui-messages-vs-model-messages/explainer/*",
+      "exercises/99-reference/99.09-start-and-finish-parts/explainer/api/chat.ts"
+    ],
+    "passes": false
+  },
+  {
+    "category": "content",
+    "lesson": "01.12 (end of basics)",
+    "description": "New explainer: AI SDK v6 DevTools basics",
+    "notes": "plans/devtools-notes.md",
+    "steps": [
+      "Create explainer with client-server setup",
+      "Show DevTools with generateText example",
+      "Add commented-out streamText and generateObject alternatives",
+      "Caveat: experimental, won't appear in rest of repo, included because new in v6"
+    ],
+    "passes": false
+  },
+  {
+    "category": "content",
+    "lesson": "03.0x (end of agents)",
+    "description": "New explainer: DevTools with tool calls",
+    "notes": "plans/devtools-notes.md",
+    "steps": [
+      "Create mini explainer with client-server setup",
+      "Show how DevTools displays tool calls nicely",
+      "Visual breakdown of tool invocations, inputs, outputs",
+      "Comes after ToolLoopAgent and MCP lessons"
+    ],
+    "passes": false
+  },
+  {
+    "category": "content",
+    "lesson": "03.0x (end of agents)",
+    "description": "New problem-solution: Tool approval with needsApproval",
+    "notes": "plans/tool-approval-notes.md",
+    "steps": [
+      "Frontend partially built (email preview component)",
+      "User adds needsApproval: true to email tool",
+      "User wires up addToolApprovalResponse from useChat",
+      "User connects approve/reject buttons",
+      "Uses sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses"
+    ],
+    "openQuestions": [
+      "When does reject reason come in?"
+    ],
+    "passes": false
   }
 ]

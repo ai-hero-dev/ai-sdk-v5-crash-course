@@ -18,11 +18,12 @@
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.2",
-    "@modelcontextprotocol/sdk": "^1.12.1",
     "@ai-sdk/google": "3.0.2",
+    "@ai-sdk/mcp": "^1.0.2",
     "@ai-sdk/openai": "^3.0.2",
     "@ai-sdk/react": "3.0.5",
     "@hono/node-server": "^1.15.0",
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "@opentelemetry/auto-instrumentations-node": "^0.62.0",
     "@opentelemetry/sdk-node": "^0.203.0",
     "@tailwindcss/postcss": "^4.1.11",

@@ -14,6 +14,9 @@ importers:
       '@ai-sdk/google':
         specifier: 3.0.2
         version: 3.0.2(zod@4.0.8)
+      '@ai-sdk/mcp':
+        specifier: ^1.0.2
+        version: 1.0.2(zod@4.0.8)
       '@ai-sdk/openai':
         specifier: ^3.0.2
         version: 3.0.2(zod@4.0.8)
@@ -155,6 +158,12 @@ packages:
 
   '@ai-sdk/google@3.0.2':
     resolution: {integrity: sha512-KyV4AR8fBKVCABfav3zGn/PY7cMDMt9m7yYhH+FJ7jLfBrEVdjT4sM0ojPFRHYUelXHl42oOAgpy3GWkeG6vtw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/mcp@1.0.2':
+    resolution: {integrity: sha512-1ukAZDVyRA968d/qPa8RA+LiXf2QFbEbZrlW/1/D8y1a1i8dw4JbsfeiSk3FsvPYkjojhCCouaz3dkiWE8hlaQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -3384,6 +3393,13 @@ snapshots:
     dependencies:
       '@ai-sdk/provider': 3.0.1
       '@ai-sdk/provider-utils': 4.0.2(zod@4.0.8)
+      zod: 4.0.8
+
+  '@ai-sdk/mcp@1.0.2(zod@4.0.8)':
+    dependencies:
+      '@ai-sdk/provider': 3.0.1
+      '@ai-sdk/provider-utils': 4.0.2(zod@4.0.8)
+      pkce-challenge: 5.0.1
       zod: 4.0.8
 
   '@ai-sdk/openai@3.0.2(zod@4.0.8)':
