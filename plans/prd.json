@@ -19,7 +19,8 @@
       "Solution uses streamText instead of generateText",
       "Solution passes Output.object with facts schema",
       "Solution iterates over partialOutputStream",
-      "Solution logs partial objects showing incremental updates"
+      "Solution logs partial objects showing incremental updates",
+      "Solution should be in solution, not solution.1"
     ],
     "passes": false
   }
