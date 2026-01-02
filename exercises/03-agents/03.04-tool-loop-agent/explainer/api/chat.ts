@@ -1,7 +1,7 @@
 import { google } from '@ai-sdk/google';
 import {
   createAgentUIStreamResponse,
-  InferAgentUIMessage,
+  type InferAgentUIMessage,
   tool,
   ToolLoopAgent,
 } from 'ai';

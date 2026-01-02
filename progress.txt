@@ -151,3 +151,33 @@
 - exercises/03-agents/03.07-devtools-with-tool-calls/explainer/client/tailwind.css
 - exercises/03-agents/03.07-devtools-with-tool-calls/explainer/main.ts
 - exercises/03-agents/03.07-devtools-with-tool-calls/explainer/readme.md
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- 03.08 Tool approval problem-solution (NEW)
+  - Email assistant with needsApproval: true on sendEmail tool
+  - Problem has TODOs for: needsApproval, addToolApprovalResponse, sendAutomaticallyWhen, approval UI
+  - Solution shows complete approval flow with approve/reject buttons
+  - Uses lastAssistantMessageIsCompleteWithApprovalResponses for auto-submit
+
+### Bugfixes
+- Fixed InferAgentUIMessage import in 03.04 and 03.07 (type-only import for verbatimModuleSyntax)
+
+### Files created
+- exercises/03-agents/03.08-tool-approval/problem/api/chat.ts
+- exercises/03-agents/03.08-tool-approval/problem/client/root.tsx
+- exercises/03-agents/03.08-tool-approval/problem/client/components.tsx
+- exercises/03-agents/03.08-tool-approval/problem/client/tailwind.css
+- exercises/03-agents/03.08-tool-approval/problem/main.ts
+- exercises/03-agents/03.08-tool-approval/problem/readme.md
+- exercises/03-agents/03.08-tool-approval/solution/api/chat.ts
+- exercises/03-agents/03.08-tool-approval/solution/client/root.tsx
+- exercises/03-agents/03.08-tool-approval/solution/client/components.tsx
+- exercises/03-agents/03.08-tool-approval/solution/client/tailwind.css
+- exercises/03-agents/03.08-tool-approval/solution/main.ts
+
+### PRD
+- All items now passes:true

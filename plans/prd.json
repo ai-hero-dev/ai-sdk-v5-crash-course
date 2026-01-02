@@ -137,7 +137,7 @@
   },
   {
     "category": "content",
-    "lesson": "03.0x (end of agents)",
+    "lesson": "03.08",
     "description": "New problem-solution: Tool approval with needsApproval",
     "notes": "plans/tool-approval-notes.md",
     "steps": [
@@ -147,9 +147,6 @@
       "User connects approve/reject buttons",
       "Uses sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses"
     ],
-    "openQuestions": [
-      "When does reject reason come in?"
-    ],
-    "passes": false
+    "passes": true
   }
 ]

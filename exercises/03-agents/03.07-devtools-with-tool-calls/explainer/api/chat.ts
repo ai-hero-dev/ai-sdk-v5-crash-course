@@ -2,7 +2,7 @@ import { google } from '@ai-sdk/google';
 import { devToolsMiddleware } from '@ai-sdk/devtools';
 import {
   createAgentUIStreamResponse,
-  InferAgentUIMessage,
+  type InferAgentUIMessage,
   tool,
   ToolLoopAgent,
   wrapLanguageModel,
