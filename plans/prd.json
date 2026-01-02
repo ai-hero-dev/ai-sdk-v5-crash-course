@@ -124,7 +124,7 @@
   },
   {
     "category": "content",
-    "lesson": "03.0x (end of agents)",
+    "lesson": "03.07 (end of agents)",
     "description": "New explainer: DevTools with tool calls",
     "notes": "plans/devtools-notes.md",
     "steps": [
@@ -133,7 +133,7 @@
       "Visual breakdown of tool invocations, inputs, outputs",
       "Comes after ToolLoopAgent and MCP lessons"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "content",

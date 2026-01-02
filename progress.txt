@@ -131,3 +131,23 @@
 - exercises/01-ai-sdk-basics/01.13-devtools-basics/explainer/client/tailwind.css
 - exercises/01-ai-sdk-basics/01.13-devtools-basics/explainer/main.ts
 - exercises/01-ai-sdk-basics/01.13-devtools-basics/explainer/readme.md
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- 03.07 DevTools with tool calls explainer (NEW)
+  - Shows DevTools middleware combined with ToolLoopAgent
+  - Visual breakdown of tool invocations, inputs, outputs in DevTools UI
+  - Same file system tools as 03.04 for consistency
+  - readme.md explains what DevTools shows for tool calls
+
+### Files created
+- exercises/03-agents/03.07-devtools-with-tool-calls/explainer/api/chat.ts
+- exercises/03-agents/03.07-devtools-with-tool-calls/explainer/api/file-system-functionality.ts
+- exercises/03-agents/03.07-devtools-with-tool-calls/explainer/client/root.tsx
+- exercises/03-agents/03.07-devtools-with-tool-calls/explainer/client/components.tsx
+- exercises/03-agents/03.07-devtools-with-tool-calls/explainer/client/tailwind.css
+- exercises/03-agents/03.07-devtools-with-tool-calls/explainer/main.ts
+- exercises/03-agents/03.07-devtools-with-tool-calls/explainer/readme.md
