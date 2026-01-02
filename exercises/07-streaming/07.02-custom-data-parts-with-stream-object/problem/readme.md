@@ -71,7 +71,7 @@ for await (const chunk of followupSuggestionsResult.textStream) {
 }
 ```
 
-Return to the [exercise on streamObject](/exercises/01-ai-sdk-basics/01.09-streaming-objects/problem/readme.md) for a reminder.
+Return to the [exercise on streamObject](/exercises/01-ai-sdk-basics/01.12-streaming-objects-via-output/problem/readme.md) for a reminder.
 
 ## Showing the Suggestions in the Frontend
 
@@ -110,7 +110,7 @@ Good luck, and I'll see you in the solution.
 - [ ] Update the streaming logic to use the `partialObjectStream`
   - Change `followupSuggestionsResult.textStream` to `followupSuggestionsResult.partialObjectStream`
   - Remove the `fullSuggestion` variable as it's no longer needed
-  - Return to the [exercise on streamObject](/exercises/01-ai-sdk-basics/01.09-streaming-objects/problem/readme.md) for a reminder.
+  - Return to the [exercise on streamObject](/exercises/01-ai-sdk-basics/01.12-streaming-objects-via-output/problem/readme.md) for a reminder.
 
 - [ ] Update the `writer.write` call to handle the array of suggestions
   - Change the data field to use the chunks from the partial object stream

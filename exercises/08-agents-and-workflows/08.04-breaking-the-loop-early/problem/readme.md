@@ -68,7 +68,7 @@ Good luck, and I'll see you in the solution.
   - A feedback string
   - A boolean indicating if the draft is good enough
 
-- [ ] Update the code to stream the feedback to the frontend as it appears in the `partialObjectStream`. Return to the [exercise on streamObject](/exercises/01-ai-sdk-basics/01.09-streaming-objects/problem/readme.md) for a reminder.
+- [ ] Update the code to stream the feedback to the frontend as it appears in the `partialObjectStream`. Return to the [exercise on streamObject](/exercises/01-ai-sdk-basics/01.12-streaming-objects-via-output/problem/readme.md) for a reminder.
 
 - [ ] Modify the loop to break early if the LLM indicates the draft is good enough
 

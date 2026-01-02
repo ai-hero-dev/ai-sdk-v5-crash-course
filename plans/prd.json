@@ -120,7 +120,7 @@
       "Add commented-out streamText and generateObject alternatives",
       "Caveat: experimental, won't appear in rest of repo, included because new in v6"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "content",
