@@ -170,7 +170,7 @@
     "files": [
       "exercises/04-persistence/04.04-persistence-in-a-normalized-db/explainer/types.ts"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "breaking-change",

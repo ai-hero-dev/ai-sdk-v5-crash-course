@@ -192,5 +192,16 @@
   - pnpm install now succeeds
 
 ### Remaining PRD items (passes:false)
-- 04.04 providerMetadata type incompatibility
 - 06.02, 06.03 evalite createScorer 3rd type argument
+
+---
+
+## 2026-01-02 (continued)
+
+### Completed
+- 04.04 providerMetadata type incompatibility fix
+  - V6 JSONObject now allows undefined values
+  - Updated MyProviderMetadata type: `Record<string, JSONValue>` → `Record<string, JSONValue | undefined>`
+
+### Files updated
+- exercises/04-persistence/04.04-persistence-in-a-normalized-db/explainer/types.ts
