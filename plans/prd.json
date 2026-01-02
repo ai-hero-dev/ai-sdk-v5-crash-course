@@ -1,6 +1,18 @@
 [
   {
     "category": "content",
+    "lesson": "01.03 (after How to Take This Course)",
+    "description": "New video: V5 to V6 breaking changes overview",
+    "steps": [
+      "Insert after 01.02-how-to-take-this-course (renumber subsequent lessons)",
+      "Cover key breaking changes from V5 to V6",
+      "Mention convertToModelMessages is now async",
+      "Brief overview, not exhaustive"
+    ],
+    "passes": false
+  },
+  {
+    "category": "content",
     "lesson": "01.11",
     "description": "TODO comment guides learner to convert generateText to streamText",
     "steps": [
