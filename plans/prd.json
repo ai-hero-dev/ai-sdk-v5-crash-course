@@ -1,0 +1,24 @@
+[
+  {
+    "category": "content",
+    "description": "TODO comment guides learner to convert generateText to streamText",
+    "steps": [
+      "Learner reads TODO asking to replace generateText with streamText",
+      "Learner keeps Output.object with same schema from 01.10",
+      "Learner uses partialObjectStream to iterate over streaming chunks",
+      "Learner logs each partial object as it arrives"
+    ],
+    "passes": false
+  },
+  {
+    "category": "content",
+    "description": "Single solution demonstrates streamText + Output.object pattern",
+    "steps": [
+      "Solution uses streamText instead of generateText",
+      "Solution passes Output.object with facts schema",
+      "Solution iterates over partialObjectStream",
+      "Solution logs partial objects showing incremental updates"
+    ],
+    "passes": false
+  }
+]

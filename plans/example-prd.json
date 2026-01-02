@@ -1,0 +1,60 @@
+[
+  {
+    "category": "functional",
+    "description": "New chat button creates a fresh conversation",
+    "steps": [
+      "Navigate to main interface",
+      "Click the 'New Chat' button",
+      "Verify a new conversation is created",
+      "Check that chat area shows welcome state",
+      "Verify conversation appears in sidebar"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can send a message and receive a response",
+    "steps": [
+      "Open an existing conversation",
+      "Type a message in the input field",
+      "Press Enter or click Send button",
+      "Verify message appears in chat history",
+      "Verify response is received and displayed"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Conversation history persists across page reloads",
+    "steps": [
+      "Send several messages in a conversation",
+      "Refresh the page",
+      "Navigate back to the same conversation",
+      "Verify all previous messages are displayed"
+    ],
+    "passes": false
+  },
+  {
+    "category": "ui",
+    "description": "Sidebar collapses and expands correctly",
+    "steps": [
+      "Click the sidebar toggle button",
+      "Verify sidebar collapses with animation",
+      "Click toggle again",
+      "Verify sidebar expands to original width"
+    ],
+    "passes": false
+  },
+  {
+    "category": "error-handling",
+    "description": "Network error displays appropriate message",
+    "steps": [
+      "Disable network connection",
+      "Attempt to send a message",
+      "Verify error message is displayed",
+      "Re-enable network",
+      "Verify retry option works"
+    ],
+    "passes": false
+  }
+]
