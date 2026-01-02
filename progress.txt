@@ -5,7 +5,11 @@
 - Marked both 01.11 PRD items as passes:true
 
 ### Remaining
-- 03.05: Code already uses correct SSE transport syntax but @modelcontextprotocol/sdk missing from package.json deps
+- None
+
+### 03.05 Fix
+- Added @modelcontextprotocol/sdk to package.json dependencies
+- Code already had correct SSE transport syntax
 
 ### Notes
 - solution.1 and solution.2 folders were deleted in favor of single solution/ folder

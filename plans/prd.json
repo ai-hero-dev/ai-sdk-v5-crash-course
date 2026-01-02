@@ -22,7 +22,7 @@
       "Use GitHub Copilot MCP endpoint as example",
       "Fixes 'Method not allowed' error from plain object transport"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "content",
