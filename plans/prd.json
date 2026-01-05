@@ -1,189 +1,371 @@
 [
   {
-    "category": "content",
-    "lesson": "01.03 (after How to Take This Course)",
-    "description": "New video: V5 to V6 breaking changes overview",
+    "category": "create-section",
+    "description": "Create new section with correct naming convention",
     "steps": [
-      "Insert after 01.02-how-to-take-this-course (renumber subsequent lessons)",
-      "Cover key breaking changes from V5 to V6",
-      "Mention convertToModelMessages is now async",
-      "Brief overview, not exhaustive"
+      "Invoke /lesson create section",
+      "Provide section name (e.g., 'advanced-streaming')",
+      "Verify folder created with 2-digit prefix and kebab-case name",
+      "Verify section appears in correct numeric order"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "01.12",
-    "description": "TODO comment guides learner to convert generateText to streamText",
+    "category": "create-section",
+    "description": "Create section at specific position with auto-renumbering",
     "steps": [
-      "Learner reads TODO asking to replace generateText with streamText",
-      "Learner keeps Output.object with same schema from 01.10",
-      "Learner uses partialOutputStream to iterate over streaming chunks",
-      "Learner logs each partial object as it arrives"
+      "Invoke /lesson create section at position 3",
+      "Provide section name",
+      "Verify new section gets number 03",
+      "Verify existing sections 03+ are renumbered to 04+"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "03.06",
-    "description": "Update MCP via SSE to use transport object syntax",
-    "notes": "plans/03.06-notes.md",
+    "category": "create-section",
+    "description": "Create section with initial lesson scaffold",
     "steps": [
-      "Replace current transport with { type: 'sse', url, headers } syntax",
-      "Add @modelcontextprotocol/sdk as dependency",
-      "Use GitHub Copilot MCP endpoint as example",
-      "Fixes 'Method not allowed' error from plain object transport"
+      "Invoke /lesson create section with --scaffold flag",
+      "Provide section name and first lesson details",
+      "Verify section folder created",
+      "Verify first lesson created with problem/solution structure"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "01.12",
-    "description": "Two solutions: new way (streamText + Output.object) and old way (streamObject)",
+    "category": "create-lesson",
+    "description": "Create problem-solution lesson in existing section",
     "steps": [
-      "solution.1: streamText + Output.object + partialOutputStream (new v6 way)",
-      "solution.2: streamObject (old way, still supported in v6)",
-      "streamObject used elsewhere in repo, not going away",
-      "Avoids updating every video in course"
+      "Invoke /lesson create lesson in section 01",
+      "Provide lesson name (e.g., 'custom-providers')",
+      "Select problem-solution type",
+      "Verify lesson folder with correct naming (01.XX-custom-providers)",
+      "Verify problem/ and solution/ folders created",
+      "Verify main.ts and readme.md in problem folder"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "03.05, 03.06",
-    "description": "Update MCP imports to use @ai-sdk/mcp package",
+    "category": "create-lesson",
+    "description": "Create explainer-only lesson",
     "steps": [
-      "Change createMCPClient import from 'ai' to '@ai-sdk/mcp'",
-      "Change StdioMCPTransport import from 'ai/mcp-stdio' to '@ai-sdk/mcp/mcp-stdio'",
-      "Update 03.05 solution/api/chat.ts",
-      "Update 03.06 explainer/api/chat.ts",
-      "Update 03.05 problem readme.md",
-      "03.05 problem already correct"
+      "Invoke /lesson create lesson",
+      "Select explainer type",
+      "Provide lesson name",
+      "Verify only explainer/ folder created",
+      "Verify readme.md has explainer structure"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "03.04",
-    "description": "New exercise: ToolLoopAgent + createAgentUIStreamResponse",
-    "notes": "plans/03.0x-tool-loop-agent-notes.md",
+    "category": "create-lesson",
+    "description": "Create lesson with multiple solutions",
     "steps": [
-      "Introduce ToolLoopAgent from AI SDK v6",
-      "Show api/client setup with createAgentUIStreamResponse",
-      "Teach InferAgentUIMessage for typed frontends",
-      "MCP lessons renumbered to 03.05 and 03.06"
+      "Invoke /lesson create lesson with --solutions 2 flag",
+      "Provide lesson details",
+      "Verify solution.1/ and solution.2/ folders created",
+      "Verify each has main.ts file"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "breaking-change",
-    "lesson": "global",
-    "description": "convertToModelMessages is now async in v6 - add await",
+    "category": "create-lesson",
+    "description": "Create lesson with multiple explainers",
     "steps": [
-      "Search all uses of convertToModelMessages",
-      "Add await before each call",
-      "Update readmes that show the pattern"
+      "Invoke /lesson create lesson with --explainers 2 flag",
+      "Provide lesson details",
+      "Verify explainer.1/ and explainer.2/ folders created",
+      "Verify each has readme.md and main.ts"
     ],
-    "files": [
-      "exercises/01-ai-sdk-basics/01.07-stream-text-to-ui/solution/api/chat.ts",
-      "exercises/01-ai-sdk-basics/01.08-system-prompts/explainer/api/chat.ts",
-      "exercises/01-ai-sdk-basics/01.09-passing-images-and-files/*/api/chat.ts",
-      "exercises/03-agents/03.01-tool-calling/*/api/chat.ts",
-      "exercises/03-agents/03.03-showing-tools-in-the-frontend/*/api/chat.ts",
-      "exercises/03-agents/03.05-mcp-via-stdio/*/api/chat.ts",
-      "exercises/03-agents/03.06-mcp-via-sse/explainer/api/chat.ts",
-      "exercises/04-persistence/04.01-on-finish/explainer/api/chat.ts",
-      "exercises/04-persistence/04.02-pass-chat-id-to-the-api/*/api/chat.ts",
-      "exercises/04-persistence/04.03-persistence/*/api/chat.ts",
-      "exercises/04-persistence/04.05-validating-messages/explainer/api/chat.ts",
-      "exercises/06-evals/06.07-langfuse-basics/*/api/chat.ts",
-      "exercises/07-streaming/07.01-custom-data-parts/*/api/chat.ts",
-      "exercises/07-streaming/07.02-custom-data-parts-with-stream-object/*/api/chat.ts",
-      "exercises/07-streaming/07.03-message-metadata/*/api/chat.ts",
-      "exercises/09-advanced-patterns/09.01-guardrails/*/api/chat.ts",
-      "exercises/09-advanced-patterns/09.02-model-router/*/api/chat.ts",
-      "exercises/09-advanced-patterns/09.03-comparing-multiple-outputs/*/api/chat.ts",
-      "exercises/09-advanced-patterns/09.04-research-workflow/*/api/chat.ts",
-      "exercises/99-reference/99.01-ui-messages-vs-model-messages/explainer/*",
-      "exercises/99-reference/99.09-start-and-finish-parts/explainer/api/chat.ts"
-    ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "01.13 (end of basics)",
-    "description": "New explainer: AI SDK v6 DevTools basics",
-    "notes": "plans/devtools-notes.md",
+    "category": "create-lesson",
+    "description": "Create React dev server exercise with client/api folders",
     "steps": [
-      "Create explainer with client-server setup",
-      "Show DevTools with generateText example",
-      "Add commented-out streamText and generateObject alternatives",
-      "Caveat: experimental, won't appear in rest of repo, included because new in v6"
+      "Invoke /lesson create lesson",
+      "Select 'react-dev-server' as main.ts type",
+      "Verify problem/client/ folder with root.tsx created",
+      "Verify problem/api/ folder created",
+      "Verify main.ts uses runLocalDevServer"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "03.07 (end of agents)",
-    "description": "New explainer: DevTools with tool calls",
-    "notes": "plans/devtools-notes.md",
+    "category": "create-lesson",
+    "description": "Create console output exercise",
     "steps": [
-      "Create mini explainer with client-server setup",
-      "Show how DevTools displays tool calls nicely",
-      "Visual breakdown of tool invocations, inputs, outputs",
-      "Comes after ToolLoopAgent and MCP lessons"
+      "Invoke /lesson create lesson",
+      "Select 'console' as main.ts type",
+      "Verify main.ts uses generateText with console.log",
+      "Verify no client/api folders created"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "content",
-    "lesson": "03.08",
-    "description": "New problem-solution: Tool approval with needsApproval",
-    "notes": "plans/tool-approval-notes.md",
+    "category": "create-lesson",
+    "description": "Create evalite evaluation exercise",
     "steps": [
-      "Frontend partially built (email preview component)",
-      "User adds needsApproval: true to email tool",
-      "User wires up addToolApprovalResponse from useChat",
-      "User connects approve/reject buttons",
-      "Uses sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses"
+      "Invoke /lesson create lesson",
+      "Select 'evalite' as main.ts type",
+      "Verify main.ts uses runEvalite",
+      "Verify eval configuration file created"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "breaking-change",
-    "lesson": "global",
-    "description": "Run pnpm install to install @ai-sdk/devtools",
+    "category": "create-readme",
+    "description": "Generate problem readme with correct structure",
     "steps": [
-      "Package in package.json but not installed",
-      "Run pnpm install"
+      "Invoke /lesson create readme for problem",
+      "Provide exercise context and goals",
+      "Verify readme has brief context section",
+      "Verify readme has problem setup with code blocks",
+      "Verify readme has TODO sections",
+      "Verify readme ends with Steps To Complete checkboxes"
     ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "breaking-change",
-    "lesson": "04.04",
-    "description": "Fix providerMetadata type incompatibility with V6",
+    "category": "create-readme",
+    "description": "Generate explainer readme with correct structure",
     "steps": [
-      "V6 SharedV3ProviderMetadata allows undefined in JSONObject",
-      "Update MyProviderMetadata type in types.ts to match"
+      "Invoke /lesson create readme for explainer",
+      "Provide topic and key concepts",
+      "Verify readme has introductory context",
+      "Verify readme has conceptual sections with headers",
+      "Verify readme has working code examples",
+      "Verify readme ends with Steps To Complete checkboxes"
     ],
-    "files": [
-      "exercises/04-persistence/04.04-persistence-in-a-normalized-db/explainer/types.ts"
-    ],
-    "passes": true
+    "passes": false
   },
   {
-    "category": "breaking-change",
-    "lesson": "06.02, 06.03",
-    "description": "evalite createScorer now requires 3 type arguments",
+    "category": "create-readme",
+    "description": "Steps To Complete section uses proper checkbox format",
     "steps": [
-      "Add 3rd type argument (Expected) to createScorer generics",
-      "Update problem and solution files"
+      "Generate any readme type",
+      "Verify ## Steps To Complete header exists",
+      "Verify uses - [ ] checkbox syntax",
+      "Verify sub-bullets are indented properly",
+      "Verify 3-8 actionable steps included"
     ],
-    "files": [
-      "exercises/06-evals/06.03-llm-as-a-judge-eval/problem/evals/attribution-eval.ts",
-      "exercises/06-evals/06.03-llm-as-a-judge-eval/solution/evals/attribution-eval.ts"
+    "passes": false
+  },
+  {
+    "category": "create-readme",
+    "description": "Reference existing README patterns from repo",
+    "steps": [
+      "Invoke /lesson create readme",
+      "Skill reads 3+ existing READMEs for pattern matching",
+      "Generated readme follows established tone and structure",
+      "File links use proper markdown format"
     ],
-    "passes": true
+    "passes": false
+  },
+  {
+    "category": "create-main-ts",
+    "description": "Generate runLocalDevServer main.ts",
+    "steps": [
+      "Create lesson with react-dev-server type",
+      "Verify imports runLocalDevServer from #shared/run-local-dev-server.ts",
+      "Verify await runLocalDevServer with root: import.meta.dirname",
+      "Verify client/root.tsx scaffold created"
+    ],
+    "passes": false
+  },
+  {
+    "category": "create-main-ts",
+    "description": "Generate console output main.ts",
+    "steps": [
+      "Create lesson with console type",
+      "Verify imports from @ai-sdk/google and ai",
+      "Verify generateText call with model and prompt",
+      "Verify console.log(result.text)"
+    ],
+    "passes": false
+  },
+  {
+    "category": "create-main-ts",
+    "description": "Generate evalite runner main.ts",
+    "steps": [
+      "Create lesson with evalite type",
+      "Verify imports runEvalite from evalite/runner",
+      "Verify runEvalite with cwd and mode options"
+    ],
+    "passes": false
+  },
+  {
+    "category": "create-main-ts",
+    "description": "Generate readme pointer main.ts",
+    "steps": [
+      "Create explainer lesson with readme-pointer type",
+      "Verify imports path from node:path",
+      "Verify console.log with readme path"
+    ],
+    "passes": false
+  },
+  {
+    "category": "read-structure",
+    "description": "List all sections with lesson counts",
+    "steps": [
+      "Invoke /lesson list sections",
+      "Verify all sections displayed with numbers",
+      "Verify lesson count shown for each section",
+      "Verify 99-reference section included"
+    ],
+    "passes": false
+  },
+  {
+    "category": "read-structure",
+    "description": "Show lesson structure with problem/solution/explainer status",
+    "steps": [
+      "Invoke /lesson show 01.05",
+      "Verify lesson name displayed",
+      "Verify problem/ folder status shown",
+      "Verify solution/ folder status shown",
+      "Verify variant folders listed if present"
+    ],
+    "passes": false
+  },
+  {
+    "category": "read-structure",
+    "description": "Find lessons by topic keyword",
+    "steps": [
+      "Invoke /lesson find 'streaming'",
+      "Verify matching lessons returned",
+      "Verify search includes lesson names",
+      "Verify results show section and lesson numbers"
+    ],
+    "passes": false
+  },
+  {
+    "category": "read-structure",
+    "description": "Show lesson dependencies and prerequisites",
+    "steps": [
+      "Invoke /lesson deps 03.05",
+      "Verify related lessons identified",
+      "Verify references to 99-reference shown if applicable"
+    ],
+    "passes": false
+  },
+  {
+    "category": "update-lesson",
+    "description": "Rename lesson and update internal references",
+    "steps": [
+      "Invoke /lesson rename 01.05 to 'text-generation'",
+      "Verify folder renamed to 01.05-text-generation",
+      "Verify internal file references updated"
+    ],
+    "passes": false
+  },
+  {
+    "category": "update-lesson",
+    "description": "Move lesson to different section",
+    "steps": [
+      "Invoke /lesson move 01.05 to section 02",
+      "Verify lesson moved to 02-llm-fundamentals",
+      "Verify lesson renumbered appropriately (02.07 or next available)",
+      "Verify original section lessons renumbered"
+    ],
+    "passes": false
+  },
+  {
+    "category": "update-lesson",
+    "description": "Add solution variant to existing lesson",
+    "steps": [
+      "Invoke /lesson add solution to 01.05",
+      "If solution/ exists, create solution.1/ from existing and solution.2/ new",
+      "If no solution exists, create solution/",
+      "Verify main.ts created in new solution folder"
+    ],
+    "passes": false
+  },
+  {
+    "category": "update-lesson",
+    "description": "Convert explainer to problem-solution",
+    "steps": [
+      "Invoke /lesson convert 01.01 to problem-solution",
+      "Verify problem/ folder created",
+      "Verify solution/ folder created",
+      "Verify explainer content preserved or moved"
+    ],
+    "passes": false
+  },
+  {
+    "category": "delete-lesson",
+    "description": "Delete lesson and update sibling numbering",
+    "steps": [
+      "Invoke /lesson delete 01.05",
+      "Confirm deletion with user",
+      "Verify lesson folder removed",
+      "Verify lessons 01.06+ renumbered to 01.05+"
+    ],
+    "passes": false
+  },
+  {
+    "category": "delete-lesson",
+    "description": "Delete section and handle lesson relocation",
+    "steps": [
+      "Invoke /lesson delete section 03",
+      "Prompt for lesson disposition (delete all or move)",
+      "If move, relocate lessons to specified section",
+      "Verify remaining sections renumbered"
+    ],
+    "passes": false
+  },
+  {
+    "category": "validate",
+    "description": "Validate naming conventions across repo",
+    "steps": [
+      "Invoke /lesson validate",
+      "Check all sections follow NN-kebab-case pattern",
+      "Check all lessons follow NN.NN-kebab-case pattern",
+      "Report any violations found"
+    ],
+    "passes": false
+  },
+  {
+    "category": "validate",
+    "description": "Check for missing required files",
+    "steps": [
+      "Invoke /lesson validate files",
+      "Check problem/ folders have readme.md and main.ts",
+      "Check explainer/ folders have readme.md and main.ts",
+      "Check solution/ folders have main.ts",
+      "Report missing files"
+    ],
+    "passes": false
+  },
+  {
+    "category": "validate",
+    "description": "Verify main.ts matches folder structure type",
+    "steps": [
+      "Invoke /lesson validate main-ts",
+      "If client/ folder exists, verify runLocalDevServer usage",
+      "If evalite exercise, verify runEvalite usage",
+      "Report mismatches"
+    ],
+    "passes": false
+  },
+  {
+    "category": "reference",
+    "description": "Add explainer to 99-reference section",
+    "steps": [
+      "Invoke /lesson create reference",
+      "Provide reference topic name",
+      "Verify created in 99-reference with next available number",
+      "Verify explainer-only structure"
+    ],
+    "passes": false
+  },
+  {
+    "category": "reference",
+    "description": "Link reference from other lessons",
+    "steps": [
+      "Invoke /lesson link-reference 99.03 to 01.05",
+      "Add reference link in lesson readme",
+      "Use consistent link format"
+    ],
+    "passes": false
   }
 ]
