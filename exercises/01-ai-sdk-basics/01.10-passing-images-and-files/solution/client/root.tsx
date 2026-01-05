@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ChatInput, Message, Wrapper } from './components.tsx';
 import './tailwind.css';
+import type { FileUIPart } from 'ai';
 
 const App = () => {
   const { messages, sendMessage } = useChat({});
@@ -36,9 +37,9 @@ const App = () => {
           );
           const file = formData.get('file') as File | null;
 
-          const filePart = file
+          const filePart: FileUIPart | undefined = file
             ? {
-                type: 'file' as const,
+                type: 'file',
                 url: await fileToDataURL(file),
                 mediaType: file.type,
               }
@@ -46,7 +47,7 @@ const App = () => {
 
           sendMessage({
             parts: [
-              { type: 'text' as const, text: input },
+              { type: 'text', text: input },
               ...(filePart ? [filePart] : []),
             ],
           });
