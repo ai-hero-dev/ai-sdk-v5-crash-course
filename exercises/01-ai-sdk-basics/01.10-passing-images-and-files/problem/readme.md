@@ -1,78 +1,16 @@
-Sometimes you need to be able to use more than text to prompt your LLM. You might need it to describe images, to extract data from PDFs.
+Many language models can process more than just text—they can analyze images, PDFs, and other files. The [AI SDK](/PLACEHOLDER/ai-sdk) provides built-in support for sending files to your LLM provider's API.
 
-Fortunately, the AI SDK provides a way of passing files through the wire so that your backend, where you actually contact the LLM, can pick them up.
+Right now, your chat application has a file upload button on the frontend, but it doesn't actually do anything with the file. The backend is expecting only text messages, so uploading an image won't work.
 
-## Our Frontend
+You need to modify the form submission handler to capture the uploaded file and send it along with the user's text message to the LLM.
 
-I've given our frontend a couple of upgrades, namely the ability to upload files. I've given you an image that you can upload, and the plan is to ask the LLM to describe the image.
+## Steps To Complete
 
-Our [`/api/chat`](./api/chat.ts) POST endpoint looks very similar to previous exercises:
+### Convert the File to a Data URL
 
-```ts
-export const POST = async (req: Request): Promise<Response> => {
-  const body = await req.json();
+- [ ] Look at the `fileToDataURL` helper function already provided in your code
 
-  const messages: UIMessage[] = body.messages;
-
-  const modelMessages: ModelMessage[] =
-    await convertToModelMessages(messages);
-
-  const streamTextResult = streamText({
-    model: google('gemini-2.5-flash'),
-    messages: modelMessages,
-  });
-
-  const stream = streamTextResult.toUIMessageStream();
-
-  return createUIMessageStreamResponse({
-    stream,
-  });
-};
-```
-
-We're calling Gemini 2.5 Flash, which is a model that can handle images. Not all models can handle images, so check your provider details for more info.
-
-We're converting the messages that we get from the body into `ModelMessage`s, passing those messages directly into `streamText`, then turning that into a `UIMessageStream`, which we stream back to the frontend.
-
-## The TODO
-
-The only TODO inside this exercise is in the [frontend](./client/root.tsx).
-
-The issue is really on the `sendMessage` function. Currently, we are only sending a message with the text:
-
-```tsx
-<ChatInput
-  // ...
-  onSubmit={async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target as HTMLFormElement);
-    const file = formData.get('file') as File;
-
-    // TODO: figure out how to pass the file
-    // _as well as the text_ to the
-    // /api/chat route!
-
-    // NOTE: You have a helpful function below
-    // called fileToDataURL that you can use to
-    // convert the file to a data URL. This
-    // will be useful!
-    sendMessage({
-      text: input,
-    });
-
-    // ...
-  }}
-/>
-```
-
-We're extracting the file off the form data that we get from the `onSubmit` event, but we're not actually passing it to the `sendMessage` function.
-
-Your job is to look inside this `sendMessage` function, and especially look at the parts array here, which is going to tell you some interesting little features. Using parts, you should be able to send both a text part and a file part.
-
-## The `fileToDataURL` Function
-
-There is also a `fileToDataURL` function down at the bottom that I've provided to you:
+This function converts a `File` object from the form into a string that the [AI SDK](/PLACEHOLDER/ai-sdk) can send over the network.
 
 ```ts
 const fileToDataURL = (file: File) => {
@@ -85,20 +23,72 @@ const fileToDataURL = (file: File) => {
 };
 ```
 
-When we send the file part, we're going to need to turn it into a data URL so that we can send it.
+### Update the Form Submission Handler
 
-Once this is done, you should be able to upload any image and tell the LLM what you want doing with that image, either to describe it or do a bit of OCR or anything.
+- [ ] Modify the `onSubmit` callback in the `ChatInput` component
 
-Good luck, and I'll see you in the solution.
+Instead of passing only `text` to `sendMessage()`, you need to pass a `parts` array that includes both a text part and an optional file part.
 
-## Steps To Complete
+```ts
+onSubmit={async (e) => {
+  e.preventDefault();
 
-- [ ] Modify the `sendMessage` call to include both text and file data
-  - You'll need to use the `parts` array to send both types of data. Use autocompletion to find the right type.
-  - Convert the file to a data URL using the provided `fileToDataURL` function
+  const formData = new FormData(
+    e.target as HTMLFormElement,
+  );
+  const file = formData.get('file') as File | null;
 
-- [ ] Test your implementation by uploading an image
-  - Run the exercise with `pnpm run exercise`
-  - Upload an image using the file upload button
-  - Ask a question about the image (e.g., "Can you describe this image?")
-  - Verify that the LLM responds with a description of the image
+  // TODO: figure out how to pass the file
+  // _as well as the text_ to the
+  // /api/chat route!
+
+  // NOTE: You have a helpful function below
+  // called fileToDataURL that you can use to
+  // convert the file to a data URL. This
+  // will be useful!
+
+  // NOTE: Make sure you handle the case where
+  // `file` is null!
+  sendMessage({
+    // NOTE: 'parts' will be useful
+    text: input,
+  });
+
+  setInput('');
+  setSelectedFile(null);
+}}
+```
+
+Look at the [message parts documentation](/PLACEHOLDER/ai-sdk-message-parts) to understand the structure you need to create.
+
+### Handle the Optional File Part
+
+- [ ] Create a file part object only if a file exists
+
+Use the `fileToDataURL` function to convert the file to a data URL string. Include the file's `mediaType` property so the LLM knows what kind of file it is.
+
+- [ ] Update the `sendMessage()` call to use a `parts` array
+
+The `parts` array should always include a text part with the user's input. If a file was selected, add a file part to the array as well.
+
+Look at the solution code to see what the `FileUIPart` type looks like.
+
+### Test Your Implementation
+
+- [ ] Run the development server with `pnpm run dev`
+
+Open http://localhost:3000 in your browser.
+
+- [ ] Click the Upload File button and select the `image.png` file from the problem folder
+
+This is an image of Lake Bled in Slovenia.
+
+- [ ] Type "Could you describe this image?" in the chat input
+
+- [ ] Submit the form and check that the LLM successfully analyzes the image
+
+The model should describe what it sees in the image rather than failing silently.
+
+- [ ] Make sure you're using a model that supports image analysis
+
+[Gemini 2.5 Flash](/PLACEHOLDER/gemini-2.5-flash) has this capability built in.
