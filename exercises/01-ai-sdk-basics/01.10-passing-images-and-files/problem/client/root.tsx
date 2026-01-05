@@ -34,7 +34,7 @@ const App = () => {
           const formData = new FormData(
             e.target as HTMLFormElement,
           );
-          const file = formData.get('file') as File;
+          const file = formData.get('file') as File | null;
 
           // TODO: figure out how to pass the file
           // _as well as the text_ to the
@@ -44,6 +44,9 @@ const App = () => {
           // called fileToDataURL that you can use to
           // convert the file to a data URL. This
           // will be useful!
+
+          // NOTE: Make sure you handle the case where
+          // `file` is null!
           sendMessage({
             // NOTE: 'parts' will be useful
             text: input,

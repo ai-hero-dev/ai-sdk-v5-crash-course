@@ -34,19 +34,20 @@ const App = () => {
           const formData = new FormData(
             e.target as HTMLFormElement,
           );
-          const file = formData.get('file') as File;
+          const file = formData.get('file') as File | null;
+
+          const filePart = file
+            ? {
+                type: 'file' as const,
+                url: await fileToDataURL(file),
+                mediaType: file.type,
+              }
+            : undefined;
 
           sendMessage({
             parts: [
-              {
-                type: 'text',
-                text: input,
-              },
-              {
-                type: 'file',
-                mediaType: file.type,
-                url: await fileToDataURL(file),
-              },
+              { type: 'text' as const, text: input },
+              ...(filePart ? [filePart] : []),
             ],
           });
           setInput('');
