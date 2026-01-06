@@ -1,55 +1,54 @@
-In 01.10, we used `generateText` with `Output.object` to get structured data from an LLM. But what if we want to stream that structured data as it's being generated?
+Generating objects is useful, but we can do better. When working with LLMs, we should always consider streaming - since LLMs generate tokens one at a time, waiting for the entire response can feel slow to users.
 
-Just like we can use `streamText` instead of `generateText` for streaming text, we can use `streamText` with `Output.object` to stream structured objects.
+Instead of waiting for the complete object to be generated, we can stream the partial results as they arrive. This gives users immediate feedback and a more satisfying experience.
 
-## The Problem
+The good news? Making this change requires minimal modifications to your existing code.
 
-Our starting code uses `generateText` with `Output.object` to get facts about an imaginary planet:
+## Steps To Complete
 
-```typescript
-const factsResult = await generateText({
+- [ ] Replace `generateText` with [`streamText`](/PLACEHOLDER/streamtext) in your facts generation code
+
+Keep the same [`Output.object()`](/PLACEHOLDER/output-object) configuration with your facts schema.
+
+```ts
+// Change from generateText to streamText
+const factsResult = streamText({
   model,
-  prompt: `Give me some facts about the imaginary planet...`,
+  prompt: `Give me some facts about the imaginary planet. Here's the story: ${finalText}`,
   output: Output.object({
     schema: z.object({
-      facts: z.array(z.string()).describe('...'),
+      facts: z
+        .array(z.string())
+        .describe(
+          'The facts about the imaginary planet. Write as if you are a scientist.',
+        ),
     }),
   }),
 });
+```
 
+- [ ] Replace the console.log with a [`for await...of`](/PLACEHOLDER/javascript-for-await-of) loop over [`partialObjectStream`](/PLACEHOLDER/partial-object-stream)
+
+Instead of logging the final output once, iterate over the streaming chunks as they arrive.
+
+```ts
+// TODO: Replace this with a for-await loop over factsResult.partialObjectStream
+// Log each partial object as it arrives
 console.log(factsResult.output);
 ```
 
-This works, but we have to wait for the entire response before we see any output.
+Each iteration will log a partial object that's been built up so far. You might see an empty facts array initially, then a few facts, then more facts - all arriving progressively.
 
-## The Challenge: Stream the Structured Object
+<Spoiler>
 
-Your task is to convert the `generateText` call to `streamText`, keeping the same `Output.object` configuration.
-
-Then, instead of logging `factsResult.output`, iterate over `factsResult.partialObjectStream` to see partial objects as they arrive:
-
-```typescript
+```ts
 for await (const chunk of factsResult.partialObjectStream) {
   console.log(chunk);
 }
 ```
 
-When you run this exercise, you should see:
+</Spoiler>
 
-1. The text of the story streaming in first
-2. A series of object logs showing the current shape of the facts object as it's being generated
+- [ ] Run the file and observe the streaming behavior
 
-The partial objects will show incremental updates like:
-- `{ facts: [] }`
-- `{ facts: ['The planet...'] }`
-- `{ facts: ['The planet...', 'Its atmosphere...'] }`
-
-## Steps To Complete
-
-- [ ] Replace `generateText` with `streamText` (no `await` needed)
-
-- [ ] Keep the `Output.object` configuration exactly the same
-
-- [ ] Replace `console.log(factsResult.output)` with a for-await loop over `factsResult.partialObjectStream`
-
-- [ ] Run the exercise with `pnpm run dev` to see both the streaming text and the structured object being built incrementally
+Execute your code with `pnpm run dev` and watch as the facts array is built up over time instead of appearing all at once at the end.
