@@ -2,6 +2,7 @@ import { google } from '@ai-sdk/google';
 import {
   createAgentUIStreamResponse,
   type InferAgentUIMessage,
+  stepCountIs,
   tool,
   ToolLoopAgent,
 } from 'ai';
@@ -12,8 +13,12 @@ const tools = {
   writeFile: tool({
     description: 'Write to a file',
     inputSchema: z.object({
-      path: z.string().describe('The path to the file to create'),
-      content: z.string().describe('The content of the file to create'),
+      path: z
+        .string()
+        .describe('The path to the file to create'),
+      content: z
+        .string()
+        .describe('The content of the file to create'),
     }),
     execute: async ({ path, content }) => {
       return fsTools.writeFile(path, content);
@@ -42,7 +47,9 @@ const tools = {
   listDirectory: tool({
     description: 'List a directory',
     inputSchema: z.object({
-      path: z.string().describe('The path to the directory to list'),
+      path: z
+        .string()
+        .describe('The path to the directory to list'),
     }),
     execute: async ({ path }) => {
       return fsTools.listDirectory(path);
@@ -71,7 +78,8 @@ const agent = new ToolLoopAgent({
 export type MyAgentUIMessage = InferAgentUIMessage<typeof agent>;
 
 export const POST = async (req: Request): Promise<Response> => {
-  const body: { messages: MyAgentUIMessage[] } = await req.json();
+  const body: { messages: MyAgentUIMessage[] } =
+    await req.json();
   const { messages } = body;
 
   return createAgentUIStreamResponse({
