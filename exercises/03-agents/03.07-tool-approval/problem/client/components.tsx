@@ -15,7 +15,9 @@ export const Wrapper = (props: {
 export const Message = ({
   role,
   parts,
-}: // TODO: Add addToolApprovalResponse prop
+}: // TODO: Add addToolApprovalResponse prop, a function which takes in:
+// - id: string
+// - approved: boolean
 {
   role: string;
   parts: MyUIMessage['parts'];
