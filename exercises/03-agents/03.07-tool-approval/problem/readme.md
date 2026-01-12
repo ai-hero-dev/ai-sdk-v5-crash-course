@@ -1,77 +1,125 @@
-Sometimes you don't want a tool to execute immediately. For actions like sending emails, deleting data, or making payments, you want the user to review and approve before the tool runs.
+There's a fundamental tension when building AI agents: the more power you give them, the more useful they become, but the more likely they are to make costly mistakes. A destructive action like sending an email can't be undone.
 
-The AI SDK v6 provides a built-in tool approval system using `needsApproval`. When a tool has `needsApproval: true`, it pauses execution and waits for the user to approve or reject.
+The solution is human-in-the-loop approval. Before the [LLM](/PLACEHOLDER/llm) executes risky actions, it asks for your permission first. Fortunately, the [AI SDK](/PLACEHOLDER/ai-sdk) has built-in support for this pattern, so you don't need to implement it from scratch.
 
-## The Exercise
+In this exercise, you'll add approval workflows to a `sendEmail` tool, creating a UI that lets users review and approve emails before they're sent.
 
-We have an email assistant that can send emails. Right now, the `sendEmail` tool in [`api/chat.ts`](./api/chat.ts) executes immediately without any user confirmation.
+## Steps To Complete
+
+### Set Up the Backend
+
+- [ ] Add `needsApproval: true` to the `sendEmail` tool definition in `api/chat.ts`
+
+This tells the AI SDK that this tool requires user approval before execution.
 
 ```ts
-sendEmail: tool({
-  description: 'Send an email to a recipient',
-  inputSchema: z.object({
-    to: z.string().describe('The email address of the recipient'),
-    subject: z.string().describe('The subject of the email'),
-    body: z.string().describe('The body of the email'),
+const tools = {
+  sendEmail: tool({
+    description: 'Send an email to a recipient',
+    inputSchema: z.object({
+      to: z
+        .string()
+        .describe('The email address of the recipient'),
+      subject: z.string().describe('The subject of the email'),
+      body: z.string().describe('The body of the email'),
+    }),
+    needsApproval: true,
+    // TODO: Add needsApproval: true to require user approval before sending
+    execute: async ({ to, subject, body }) => {
+      // In a real app, this would send an email
+      console.log(`Sending email to ${to}: ${subject}`);
+      return { sent: true, to, subject };
+    },
   }),
-  // TODO: Add needsApproval: true to require user approval before sending
-  execute: async ({ to, subject, body }) => {
-    // In a real app, this would send an email
-    console.log(`Sending email to ${to}: ${subject}`);
-    return { sent: true, to, subject };
-  },
-}),
+};
 ```
 
-Your job is to:
+### Build the Frontend UI
 
-1. Add `needsApproval: true` to the tool definition
-2. Get `addToolApprovalResponse` from `useChat` in [`root.tsx`](./client/root.tsx)
-3. Add `sendAutomaticallyWhen` to continue the conversation after approval
-4. Wire up the approve/reject buttons in [`components.tsx`](./client/components.tsx)
+- [ ] Add the `addToolApprovalResponse` prop to the `Message` component in `client/components.tsx`
 
-## Tool States
+This prop is a function that takes an `id` (string) and `approved` (boolean).
 
-When a tool has `needsApproval: true`, the tool invocation will have different states:
+```ts
+export const Message = ({
+  role,
+  parts,
+}: // TODO: Add addToolApprovalResponse prop, a function which takes in:
+// - id: string
+// - approved: boolean
+{
+  role: string;
+  parts: MyUIMessage['parts'];
+})
+```
 
-- `approval-requested` - Tool is waiting for user approval
-- `output-available` - Tool executed successfully after approval
+- [ ] Render an approval UI when `part.state === 'approval-requested'`
 
-In the `approval-requested` state, you can access `part.approval.id` to call `addToolApprovalResponse`.
+Check for the `approval-requested` state and display the email details (to, subject, body) with approve and reject buttons.
 
-## Auto-Submit After Approval
+```ts
+if (part.type === 'tool-sendEmail') {
+  // TODO: Check if part.state === 'approval-requested'
+  // If so, render the email preview with approve/reject buttons
+  // Use addToolApprovalResponse({ id: part.approval.id, approved: true/false })
+```
 
-By default, after you call `addToolApprovalResponse`, nothing happens until the user sends another message. To automatically continue the conversation after approval, use `sendAutomaticallyWhen`:
+When the user clicks approve, call `addToolApprovalResponse({ id: part.approval.id, approved: true })`. When they click reject, use `approved: false`.
+
+### Wire Up the Parent Component
+
+- [ ] Get `addToolApprovalResponse` from [`useChat`](/PLACEHOLDER/use-chat) in `client/root.tsx`
+
+The [`useChat`](/PLACEHOLDER/use-chat) hook returns this function directly.
+
+```ts
+const { messages, sendMessage, addToolApprovalResponse } =
+  useChat<MyUIMessage>({
+    // TODO: Get addToolApprovalResponse from useChat
+    // TODO: Add sendAutomaticallyWhen option using
+    // lastAssistantMessageIsCompleteWithApprovalResponses
+  });
+```
+
+- [ ] Pass `addToolApprovalResponse` down to the `Message` component
+
+```ts
+{messages.map((message) => (
+  <Message
+    key={message.id}
+    role={message.role}
+    parts={message.parts}
+    // TODO: Pass addToolApprovalResponse to Message
+  />
+))}
+```
+
+- [ ] Add the `sendAutomaticallyWhen` option to [`useChat`](/PLACEHOLDER/use-chat)
+
+Import [`lastAssistantMessageIsCompleteWithApprovalResponses`](/PLACEHOLDER/last-assistant-message-is-complete-with-approval-responses) from the [AI SDK](/PLACEHOLDER/ai-sdk) and pass it to the hook. This automatically sends responses once all approvals are handled.
 
 ```ts
 import { lastAssistantMessageIsCompleteWithApprovalResponses } from 'ai';
 
-const { messages, addToolApprovalResponse } = useChat({
-  sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithApprovalResponses,
-});
+const { messages, sendMessage, addToolApprovalResponse } =
+  useChat<MyUIMessage>({
+    sendAutomaticallyWhen:
+      lastAssistantMessageIsCompleteWithApprovalResponses,
+  });
 ```
 
-## Steps To Complete
+### Test Your Implementation
 
-- [ ] Add `needsApproval: true` to the `sendEmail` tool in `api/chat.ts`
+- [ ] Run the dev server with `pnpm run dev`
 
-- [ ] In `root.tsx`, get `addToolApprovalResponse` from `useChat`:
+- [ ] Send a message: "Send an email to bob@example.com saying hello"
 
-```ts
-const { messages, sendMessage, addToolApprovalResponse } = useChat<MyUIMessage>({
-  // ...
-});
-```
+The [LLM](/PLACEHOLDER/llm) should call the `sendEmail` tool and display your approval UI.
 
-- [ ] Add `sendAutomaticallyWhen` to `useChat` using `lastAssistantMessageIsCompleteWithApprovalResponses` from `ai`
+- [ ] Test the approve button
 
-- [ ] Pass `addToolApprovalResponse` to the `Message` component
+Click approve and check your browser console. You should see `Sending email to bob@example.com: hello`.
 
-- [ ] In `components.tsx`, add the `addToolApprovalResponse` prop to the `Message` component
+- [ ] Test the reject button
 
-- [ ] Add a check for `part.state === 'approval-requested'` in the `Message` component. When in this state, render:
-  - An email preview showing `to`, `subject`, and `body`
-  - A "Send" button that calls `addToolApprovalResponse({ id: part.approval.id, approved: true })`
-  - A "Cancel" button that calls `addToolApprovalResponse({ id: part.approval.id, approved: false })`
-
-- [ ] Run the local dev server and test the approval flow by asking the assistant to send an email
+Reject an email and verify the [LLM](/PLACEHOLDER/llm) asks for follow-up information instead of sending it.
