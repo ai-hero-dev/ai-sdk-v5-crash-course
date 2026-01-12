@@ -18,7 +18,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   const mcpClient = await createMCPClient({
     transport: {
-      type: 'sse',
+      type: 'http',
       url: 'https://api.githubcopilot.com/mcp',
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
