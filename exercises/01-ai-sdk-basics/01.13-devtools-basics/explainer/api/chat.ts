@@ -10,7 +10,7 @@ import {
 } from 'ai';
 
 // Wrap the model with DevTools middleware
-// Run `npx @ai-sdk/devtools` in a separate terminal
+// Run `npx @ai-sdk/devtools@latest` in a separate terminal
 // Then open http://localhost:4983 to see LLM calls
 const model = wrapLanguageModel({
   model: google('gemini-2.5-flash'),

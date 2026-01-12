@@ -1,22 +1,25 @@
-AI SDK v6 introduces DevTools for debugging AI applications with full visibility into LLM calls.
+Up until now, we've been flying blind with the AI SDK. We send requests to the LLM and get responses back, but we haven't had much visibility into what's actually happening under the hood.
 
-> **Note:** DevTools is experimental and may change. It won't appear throughout the rest of this repo, but is included here because it's new in v6.
+The [AI SDK](/PLACEHOLDER/ai-sdk) V6 shipped with [DevTools](/PLACEHOLDER/ai-sdk-devtools) - a powerful local development tool that lets you inspect every interaction with your language model. You can see request payloads, response streams, token usage, and even watch reasoning tokens get consumed in real-time.
 
-## Setup
+This observability is critical when building with LLMs. It helps you debug issues, understand what's being sent to the provider, and optimize your prompts based on actual usage data.
 
-First, install the DevTools package:
+## Steps To Complete
 
-```bash
-pnpm add @ai-sdk/devtools
-```
+### Set Up DevTools Middleware
 
-## Wrapping the Model
+- [ ] Import `devToolsMiddleware` from `@ai-sdk/devtools`
 
-In [`api/chat.ts`](./api/chat.ts), we use `wrapLanguageModel` to wrap the model with the DevTools middleware:
+The middleware comes from the [AI SDK DevTools](/PLACEHOLDER/ai-sdk-devtools) package and allows you to intercept and inspect LLM calls.
+
+- [ ] Wrap your language model with `wrapLanguageModel()`
+
+Use the [`wrapLanguageModel()`](/PLACEHOLDER/wrap-language-model) function from the [AI SDK](/PLACEHOLDER/ai-sdk) to add the middleware to your model. Pass the model and the middleware to it:
 
 ```ts
-import { wrapLanguageModel } from 'ai';
+import { google } from '@ai-sdk/google';
 import { devToolsMiddleware } from '@ai-sdk/devtools';
+import { wrapLanguageModel } from 'ai';
 
 const model = wrapLanguageModel({
   model: google('gemini-2.5-flash'),
@@ -24,39 +27,52 @@ const model = wrapLanguageModel({
 });
 ```
 
-This wrapped model can be used with any AI SDK Core function like `streamText`, `generateText`, or `generateObject`.
+### Launch DevTools
 
-## Launching DevTools
+- [ ] Run your development server with `pnpm run dev`
 
-In a separate terminal, run:
+This starts your local dev server which will be instrumented with DevTools.
 
-```bash
-npx @ai-sdk/devtools
-```
+- [ ] Open a new terminal window and run `npx @ai-sdk/devtools@latest`
 
-Then open `http://localhost:4983` in your browser.
+This launches the DevTools UI at `http://localhost:4983`.
 
-## What Gets Captured
+- [ ] Keep both terminal windows open side-by-side
 
-DevTools intercepts all LLM calls and logs:
+One terminal runs your app, the other runs the DevTools interface.
 
-- Input parameters and complete prompts
-- Generated text and tool invocations
-- Token usage metrics and timing data
-- Raw provider request/response payloads
+### Test the Integration
 
-## Storage & Security
+- [ ] Navigate to `http://localhost:3000` in your browser
 
-DevTools stores data locally in `.devtools/generations.json`. The middleware automatically adds `.devtools` to `.gitignore`.
+This is where your application is running.
 
-**Warning:** Only use DevTools in local development. Prompts and responses are stored in plain text.
+- [ ] Make a request to your LLM (like asking "What's the capital of France?")
 
-## Steps To Complete
+Send a message through your application UI.
 
-- [ ] Run `npx @ai-sdk/devtools` in a separate terminal
+- [ ] Switch to the DevTools tab at `http://localhost:4983`
 
-- [ ] Run the exercise with `pnpm run dev` and send a message
+You should now see a new run appear in the DevTools interface.
 
-- [ ] Open `http://localhost:4983` to see the request/response details
+- [ ] Click into the run to inspect its details
 
-- [ ] Try sending multiple messages and observe how DevTools groups them
+Explore the different tabs available:
+
+- **General**: See how long the request took and basic metrics
+- **Usage**: View detailed token counts, including reasoning tokens if applicable
+- **Request/Response**: Inspect the raw request payload and streaming response
+
+### Verify Full Observability
+
+- [ ] Check the token usage breakdown
+
+Notice the input tokens, output tokens, and any reasoning tokens that were consumed.
+
+- [ ] Review the request payload
+
+Confirm you can see exactly what was sent to the LLM provider.
+
+- [ ] Examine the streaming response
+
+Understand how the response was streamed back from the provider.

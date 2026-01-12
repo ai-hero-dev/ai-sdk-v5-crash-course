@@ -1,15 +1,39 @@
-I wanted to provide you an example of using SSE as a transport for an MCP client. In fact, this is my preferred way of teaching this because it means less setup for you.
+Right now, if you want to use an MCP server with the AI SDK, you need to run it locally on your machine. That means executing code from someone else's library with `npx` - which can feel risky.
 
-However, I simply could not get it working on my machine. So I've provided this example for you. Hopefully you can get it working, but I couldn't.
+But MCP servers are being deployed all over the world. So how do you contact them without running code locally?
 
-The important difference is inside this [`createMCPClient`](./api/chat.ts) function, we no longer need to instantiate a `StdioMCPTransport`. We're now just passing in the information needed to contact the GitHub API via SSE.
+The answer is [HTTP transport](/PLACEHOLDER/http-transport). Instead of using [standard IO transport](/PLACEHOLDER/standard-io-transport) to run an MCP server locally, you can point your AI SDK client at an external API endpoint.
 
-Let's look at the code:
+## How Transport Types Work
+
+The AI SDK supports three different [transport](/PLACEHOLDER/mcp-transport) types for connecting to MCP servers:
+
+| Transport                | Use Case                 | Trade-offs                                               |
+| ------------------------ | ------------------------ | -------------------------------------------------------- |
+| Standard IO              | Local MCP servers        | Simpler setup, but executes code on your machine         |
+| HTTP                     | Remote MCP servers       | No local code execution, but depends on external service |
+| Server-Sent Events (SSE) | Real-time remote servers | Lower latency, but less widely supported                 |
+
+## Steps To Complete
+
+- [ ] Review the current setup in `api/chat.ts`
+
+The current code uses [standard IO transport](/PLACEHOLDER/standard-io-transport) to run an MCP server locally. You'll need to understand what [`createMCPClient`](/PLACEHOLDER/create-mcp-client) does and how it currently works.
+
+- [ ] Replace the transport configuration with HTTP transport
+
+Change the `transport` property in the [`createMCPClient`](/PLACEHOLDER/create-mcp-client) call to use HTTP instead. You'll need to:
+
+- Set `type` to `'http'`
+- Provide a `url` pointing to the remote MCP server
+- Add any necessary `headers` for authentication
 
 ```ts
+import { experimental_createMCPClient as createMCPClient } from '@ai-sdk/mcp';
+
 const mcpClient = await createMCPClient({
   transport: {
-    type: 'sse',
+    type: 'http',
     url: 'https://api.githubcopilot.com/mcp',
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
@@ -18,16 +42,20 @@ const mcpClient = await createMCPClient({
 });
 ```
 
-Instead of using the `StdioMCPTransport`, we're configuring an SSE (Server-Sent Events) transport that connects directly to GitHub's API.
+- [ ] Test your implementation
 
-I would suggest that you run this code, see if you can get it working. I think it was something to do with my strange WSL setup that was just making this balk. Good luck and I will see you in the next one.
+Run `pnpm run dev` and test the same request: "Give me the latest issues on the mattpocock/ts-reset repo."
 
-## Steps To Complete
+The agent should fetch data from the remote MCP server through HTTP instead of running code locally.
 
-- [ ] Make sure you have a GitHub [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) set in your environment variables
+- [ ] Observe the differences
 
-- [ ] Try running the code as-is to see if the SSE transport works on your system
+Notice how the HTTP transport:
 
-- [ ] Test the implementation by running your local dev server and seeing if GitHub API interactions work properly
+- Makes the setup simpler (no local process to manage)
+- Demands less from your server
+- Still gets the same results as the local setup
 
-- [ ] Check for any error messages in your terminal that might indicate connection issues with the SSE transport
+- [ ] Consider the trade-offs
+
+Think about what happens if the external service goes down. With HTTP transport, your entire agent depends on that external API being available. This is the main caveat of using remote MCP servers.
