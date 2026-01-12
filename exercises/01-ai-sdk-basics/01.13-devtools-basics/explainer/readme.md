@@ -1,6 +1,6 @@
 Up until now, we've been flying blind with the AI SDK. We send requests to the LLM and get responses back, but we haven't had much visibility into what's actually happening under the hood.
 
-The [AI SDK](/PLACEHOLDER/ai-sdk) V6 shipped with [DevTools](/PLACEHOLDER/ai-sdk-devtools) - a powerful local development tool that lets you inspect every interaction with your language model. You can see request payloads, response streams, token usage, and even watch reasoning tokens get consumed in real-time.
+The [AI SDK](https://ai-sdk.dev/docs/introduction) V6 shipped with [DevTools](https://ai-sdk.dev/docs/ai-sdk-core/devtools) - a powerful local development tool that lets you inspect every interaction with your language model. You can see request payloads, response streams, token usage, and even watch reasoning tokens get consumed in real-time.
 
 This observability is critical when building with LLMs. It helps you debug issues, understand what's being sent to the provider, and optimize your prompts based on actual usage data.
 
@@ -10,11 +10,11 @@ This observability is critical when building with LLMs. It helps you debug issue
 
 - [ ] Import `devToolsMiddleware` from `@ai-sdk/devtools`
 
-The middleware comes from the [AI SDK DevTools](/PLACEHOLDER/ai-sdk-devtools) package and allows you to intercept and inspect LLM calls.
+The middleware comes from the [AI SDK DevTools](https://ai-sdk.dev/docs/ai-sdk-core/devtools) package and allows you to intercept and inspect LLM calls.
 
 - [ ] Wrap your language model with `wrapLanguageModel()`
 
-Use the [`wrapLanguageModel()`](/PLACEHOLDER/wrap-language-model) function from the [AI SDK](/PLACEHOLDER/ai-sdk) to add the middleware to your model. Pass the model and the middleware to it:
+Use the [`wrapLanguageModel()`](https://ai-sdk.dev/docs/reference/ai-sdk-core/wrap-language-model) function from the [AI SDK](https://ai-sdk.dev/docs/introduction) to add the middleware to your model. Pass the model and the middleware to it:
 
 ```ts
 import { google } from '@ai-sdk/google';

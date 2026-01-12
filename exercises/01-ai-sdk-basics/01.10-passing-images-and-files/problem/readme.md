@@ -1,4 +1,4 @@
-Many language models can process more than just text—they can analyze images, PDFs, and other files. The [AI SDK](/PLACEHOLDER/ai-sdk) provides built-in support for sending files to your LLM provider's API.
+Many language models can process more than just text—they can analyze images, PDFs, and other files. The [AI SDK](https://ai-sdk.dev/docs/introduction) provides built-in support for sending files to your LLM provider's API.
 
 Right now, your chat application has a file upload button on the frontend, but it doesn't actually do anything with the file. The backend is expecting only text messages, so uploading an image won't work.
 
@@ -10,7 +10,7 @@ You need to modify the form submission handler to capture the uploaded file and 
 
 - [ ] Look at the `fileToDataURL` helper function already provided in your code
 
-This function converts a `File` object from the form into a string that the [AI SDK](/PLACEHOLDER/ai-sdk) can send over the network.
+This function converts a `File` object from the form into a string that the [AI SDK](https://ai-sdk.dev/docs/introduction) can send over the network.
 
 ```ts
 const fileToDataURL = (file: File) => {
@@ -59,7 +59,7 @@ onSubmit={async (e) => {
 }}
 ```
 
-Look at the [message parts documentation](/PLACEHOLDER/ai-sdk-message-parts) to understand the structure you need to create.
+Look at the [message parts documentation](https://ai-sdk.dev/docs/reference/ai-sdk-core/ui-message) to understand the structure you need to create.
 
 ### Handle the Optional File Part
 
@@ -91,4 +91,4 @@ The model should describe what it sees in the image rather than failing silently
 
 - [ ] Make sure you're using a model that supports image analysis
 
-[Gemini 2.5 Flash](/PLACEHOLDER/gemini-2.5-flash) has this capability built in.
+[Gemini 2.5 Flash](https://ai.google.dev/gemini-api/docs/models) has this capability built in.

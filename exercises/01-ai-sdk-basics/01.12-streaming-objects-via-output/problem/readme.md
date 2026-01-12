@@ -6,9 +6,9 @@ The good news? Making this change requires minimal modifications to your existin
 
 ## Steps To Complete
 
-- [ ] Replace `generateText` with [`streamText`](/PLACEHOLDER/streamtext) in your facts generation code
+- [ ] Replace `generateText` with [`streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text) in your facts generation code
 
-Keep the same [`Output.object()`](/PLACEHOLDER/output-object) configuration with your facts schema.
+Keep the same [`Output.object()`](https://ai-sdk.dev/docs/ai-sdk-core/generating-structured-data) configuration with your facts schema.
 
 ```ts
 // Change from generateText to streamText
@@ -27,7 +27,7 @@ const factsResult = streamText({
 });
 ```
 
-- [ ] Replace the console.log with a [`for await...of`](/PLACEHOLDER/javascript-for-await-of) loop over [`partialObjectStream`](/PLACEHOLDER/partial-object-stream)
+- [ ] Replace the console.log with a [`for await...of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loop over [`partialObjectStream`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text)
 
 Instead of logging the final output once, iterate over the streaming chunks as they arrive.
 
