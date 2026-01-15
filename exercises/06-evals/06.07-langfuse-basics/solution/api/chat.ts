@@ -7,7 +7,8 @@ import {
   type ModelMessage,
   type UIMessage,
 } from 'ai';
-import { langfuse } from './langfuse.ts';
+import { updateActiveTrace } from '@langfuse/tracing';
+import { langfuseSpanProcessor } from './langfuse.ts';
 
 export const POST = async (req: Request): Promise<Response> => {
   const body = await req.json();
@@ -17,7 +18,7 @@ export const POST = async (req: Request): Promise<Response> => {
   const modelMessages: ModelMessage[] =
     await convertToModelMessages(messages);
 
-  const trace = langfuse.trace({
+  updateActiveTrace({
     sessionId: body.id,
   });
 
@@ -44,7 +45,7 @@ export const POST = async (req: Request): Promise<Response> => {
       <conversation-history>
       ${mostRecentMessageText}
       </conversation-history>
-      
+
       Find the most concise title that captures the essence of the conversation.
       Titles should be at most 30 characters.
       Titles should be formatted in sentence case, with capital letters at the start of each word. Do not provide a period at the end.
@@ -60,9 +61,6 @@ export const POST = async (req: Request): Promise<Response> => {
     experimental_telemetry: {
       isEnabled: true,
       functionId: 'title-generation',
-      metadata: {
-        langfuseTraceId: trace.id,
-      },
     },
   });
 
@@ -72,9 +70,6 @@ export const POST = async (req: Request): Promise<Response> => {
     experimental_telemetry: {
       isEnabled: true,
       functionId: 'chat',
-      metadata: {
-        langfuseTraceId: trace.id,
-      },
     },
   });
 
@@ -84,7 +79,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
       console.log('title: ', title.text);
 
-      await langfuse.flushAsync();
+      await langfuseSpanProcessor.forceFlush();
     },
   });
 

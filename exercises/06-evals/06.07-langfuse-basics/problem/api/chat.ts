@@ -7,7 +7,7 @@ import {
   type ModelMessage,
   type UIMessage,
 } from 'ai';
-import { langfuse } from './langfuse.ts';
+import { langfuseSpanProcessor } from './langfuse.ts';
 
 export const POST = async (req: Request): Promise<Response> => {
   const body = await req.json();
@@ -17,10 +17,10 @@ export const POST = async (req: Request): Promise<Response> => {
   const modelMessages: ModelMessage[] =
     await convertToModelMessages(messages);
 
-  // TODO: declare the trace variable using the langfuse.trace method,
+  // TODO: call updateActiveTrace from @langfuse/tracing
   // and pass it the following arguments:
   // - sessionId: body.id
-  const trace = TODO;
+  TODO;
 
   const mostRecentMessage = messages[messages.length - 1];
 
@@ -45,7 +45,7 @@ export const POST = async (req: Request): Promise<Response> => {
       <conversation-history>
       ${mostRecentMessageText}
       </conversation-history>
-      
+
       Find the most concise title that captures the essence of the conversation.
       Titles should be at most 30 characters.
       Titles should be formatted in sentence case, with capital letters at the start of each word. Do not provide a period at the end.
@@ -61,7 +61,6 @@ export const POST = async (req: Request): Promise<Response> => {
     // TODO: declare the experimental_telemetry property using the following object:
     // - isEnabled: true
     // - functionId: 'your-name-here'
-    // - metadata: { langfuseTraceId: trace.id }
     experimental_telemetry: TODO,
   });
 
@@ -71,7 +70,6 @@ export const POST = async (req: Request): Promise<Response> => {
     // TODO: declare the experimental_telemetry property using the following object:
     // - isEnabled: true
     // - functionId: 'your-name-here'
-    // - metadata: { langfuseTraceId: trace.id }
     experimental_telemetry: TODO,
   });
 
@@ -81,7 +79,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
       console.log('title: ', title.text);
 
-      // TODO: flush the langfuse traces using the langfuse.flushAsync method
+      // TODO: flush the langfuse traces using langfuseSpanProcessor.forceFlush()
       // and await the result
       TODO;
     },
