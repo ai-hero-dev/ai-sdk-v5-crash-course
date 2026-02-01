@@ -35,7 +35,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   // Write Slack message
   const writeSlackResult = await generateText({
-    model: google('gemini-2.0-flash-001'),
+    model: google('gemini-2.5-flash'),
     system: WRITE_SLACK_MESSAGE_FIRST_DRAFT_SYSTEM,
     prompt: `
       Conversation history:
@@ -45,7 +45,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   // Evaluate Slack message
   const evaluateSlackResult = await generateText({
-    model: google('gemini-2.0-flash-001'),
+    model: google('gemini-2.5-flash'),
     system: EVALUATE_SLACK_MESSAGE_SYSTEM,
     prompt: `
       Conversation history:
@@ -58,7 +58,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   // Write final Slack message
   const finalSlackAttempt = streamText({
-    model: google('gemini-2.0-flash-001'),
+    model: google('gemini-2.5-flash'),
     system: WRITE_SLACK_MESSAGE_FINAL_SYSTEM,
     prompt: `
       Conversation history:

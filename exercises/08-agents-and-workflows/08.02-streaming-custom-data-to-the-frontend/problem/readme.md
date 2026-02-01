@@ -39,7 +39,7 @@ Next, we need to strip out the `generateText` calls inside the execute function:
 ```typescript
 // TODO - change to streamText and write to the stream as custom data parts
 const writeSlackResult = await generateText({
-  model: google('gemini-2.0-flash-001'),
+  model: google('gemini-2.5-flash'),
   system: WRITE_SLACK_MESSAGE_FIRST_DRAFT_SYSTEM,
   prompt: `
     Conversation history:
@@ -49,7 +49,7 @@ const writeSlackResult = await generateText({
 
 // TODO - change to streamText and write to the stream as custom data parts
 const evaluateSlackResult = await generateText({
-  model: google('gemini-2.0-flash-001'),
+  model: google('gemini-2.5-flash'),
   system: EVALUATE_SLACK_MESSAGE_SYSTEM,
   prompt: `
     Conversation history:
@@ -71,7 +71,7 @@ The final Slack attempt is already streaming, which is good:
 
 ```typescript
 const finalSlackAttempt = streamText({
-  model: google('gemini-2.0-flash-001'),
+  model: google('gemini-2.5-flash'),
   system: WRITE_SLACK_MESSAGE_FINAL_SYSTEM,
   prompt: `
     Conversation history:

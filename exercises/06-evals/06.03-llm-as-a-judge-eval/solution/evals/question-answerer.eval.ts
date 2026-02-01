@@ -25,7 +25,7 @@ evalite('Chain Of Thought Paper', {
   ],
   task: async (input) => {
     const result = await generateText({
-      model: google('gemini-2.0-flash'),
+      model: google('gemini-2.5-flash'),
       system: `
         You are a helpful assistant that can answer questions about the chain of thought prompting paper.
         

@@ -32,7 +32,7 @@ export const attributionToChainOfThoughtPaper = createScorer<
   name: 'Attribution',
   scorer: async ({ input, output }) => {
     const result = await generateObject({
-      model: google('gemini-2.0-flash'),
+      model: google('gemini-2.5-flash'),
       system: ATTRIBUTION_PROMPT,
       messages: TODO, // TODO: Pass the chain of thought paper, the question and the answer given
       schema: TODO, // TODO: Define the schema for the response

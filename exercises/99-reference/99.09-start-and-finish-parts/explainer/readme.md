@@ -46,7 +46,7 @@ We do this three times until we have three paragraphs. Here's the code for the f
 writeTextPart(writer, 'Paragraph 1: ');
 
 const firstParagraphResult = streamText({
-  model: google('gemini-2.0-flash-lite'),
+  model: google('gemini-2.5-flash-lite'),
   messages: [
     ...modelMessages,
     {

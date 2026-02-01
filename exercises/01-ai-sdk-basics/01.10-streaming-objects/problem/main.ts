@@ -2,7 +2,7 @@ import { google } from "@ai-sdk/google";
 import { streamObject, streamText } from "ai";
 import z from "zod";
 
-const model = google("gemini-2.0-flash");
+const model = google('gemini-2.5-flash');
 
 const stream = streamText({
 	model,

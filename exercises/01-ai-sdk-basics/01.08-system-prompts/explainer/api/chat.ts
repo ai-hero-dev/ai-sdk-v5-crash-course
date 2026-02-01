@@ -18,11 +18,11 @@ export const POST = async (req: Request): Promise<Response> => {
 
 	const modelMessages: ModelMessage[] = convertToModelMessages(messages);
 
-	const streamTextResult = streamText({
-		model: google("gemini-2.0-flash"),
-		messages: modelMessages,
-		system: SYSTEM_PROMPT,
-	});
+  const streamTextResult = streamText({
+    model: google('gemini-2.5-flash'),
+    messages: modelMessages,
+    system: SYSTEM_PROMPT,
+  });
 
 	const stream = streamTextResult.toUIMessageStream();
 

@@ -20,7 +20,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   // TODO: pass the modelMessages to streamText
   const streamTextResult = streamText({
-    model: google('gemini-2.0-flash'), messages: modelMessages
+    model: google('gemini-2.5-flash'),
   });
 
   // TODO: create a UIMessageStream from the streamTextResult

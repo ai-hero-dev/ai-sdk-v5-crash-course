@@ -47,7 +47,7 @@ export const POST = async (req: Request): Promise<Response> => {
       writeTextPart(writer, 'Paragraph 1: ');
 
       const firstParagraphResult = streamText({
-        model: google('gemini-2.0-flash-lite'),
+        model: google('gemini-2.5-flash-lite'),
         messages: [
           ...modelMessages,
           {
@@ -71,7 +71,7 @@ export const POST = async (req: Request): Promise<Response> => {
       writeTextPart(writer, 'Paragraph 2: ');
 
       const secondParagraphResult = streamText({
-        model: google('gemini-2.0-flash-lite'),
+        model: google('gemini-2.5-flash-lite'),
         messages: [
           ...modelMessages,
           {
@@ -96,7 +96,7 @@ export const POST = async (req: Request): Promise<Response> => {
       writeTextPart(writer, 'Paragraph 3: ');
 
       const thirdParagraphResult = streamText({
-        model: google('gemini-2.0-flash-lite'),
+        model: google('gemini-2.5-flash-lite'),
         messages: [
           ...modelMessages,
           {

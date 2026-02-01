@@ -31,7 +31,7 @@ evalite('Chat Title Generation', {
   data: () => dataForEvalite,
   task: async (input) => {
     const result = await generateText({
-      model: google('gemini-2.0-flash-lite'),
+      model: google('gemini-2.5-flash-lite'),
       prompt: `
         You are a helpful assistant that can generate titles for conversations. The title will be used for organizing conversations in a chat application.
 

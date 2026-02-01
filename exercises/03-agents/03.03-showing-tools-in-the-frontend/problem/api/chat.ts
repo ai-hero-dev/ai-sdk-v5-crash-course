@@ -6,9 +6,12 @@ import {
   stepCountIs,
   streamText,
   tool,
-} from "ai";
-import { z } from "zod";
-import * as fsTools from "./file-system-functionality.ts";
+  type InferUITools,
+  type Tool,
+  type UIMessage,
+} from 'ai';
+import { z } from 'zod';
+import * as fsTools from './file-system-functionality.ts';
 
 // TODO - move the tool definitions from the streamText call into
 // the variable below

@@ -8,7 +8,7 @@ Our [current flow](./api/chat.ts) _always_ goes through the loop. We're going to
 while (step < 2) {
   // Write Slack message
   const writeSlackResult = streamText({
-    model: google('gemini-2.0-flash-001'),
+    model: google('gemini-2.5-flash'),
     system: WRITE_SLACK_MESSAGE_FIRST_DRAFT_SYSTEM,
     prompt: `/* prompt content */`,
   });

@@ -13,7 +13,7 @@ export const POST = async (req: Request): Promise<Response> => {
   console.log('id', id);
 
   const result = streamText({
-    model: google('gemini-2.0-flash-001'),
+    model: google('gemini-2.5-flash'),
     messages: convertToModelMessages(messages),
   });
 
