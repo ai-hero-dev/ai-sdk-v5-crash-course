@@ -1,5 +1,5 @@
-import { google } from '@ai-sdk/google';
-import { streamText } from 'ai';
+import { google } from "@ai-sdk/google";
+import { streamText } from "ai";
 
 const output = streamText({
   model: google('gemini-2.5-flash-lite'),
@@ -7,10 +7,11 @@ const output = streamText({
 });
 
 for await (const chunk of output.textStream) {
-  process.stdout.write(chunk);
+	process.stdout.write(chunk);
 }
 
-console.log(); // Empty log to separate the output from the usage
+const usege = await output.usage;
+
+console.log({ ...usege }); // Empty log to separate the output from the usage
 
 // TODO: Print the usage to the console
-TODO;

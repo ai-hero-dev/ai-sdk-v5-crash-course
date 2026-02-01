@@ -7,6 +7,6 @@ const model = TODO;
 
 const prompt = 'What is the capital of France?';
 
-const result = TODO; // TODO: Use generateText to get the result
+const result = await generateText({ model, prompt }); // TODO: Use generateText to get the result
 
 console.log(result.text);

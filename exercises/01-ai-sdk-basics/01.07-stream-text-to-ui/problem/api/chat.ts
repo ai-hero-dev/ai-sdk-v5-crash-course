@@ -1,5 +1,6 @@
 import { google } from '@ai-sdk/google';
 import {
+  convertToModelMessages,
   createUIMessageStreamResponse,
   streamText,
   type ModelMessage,
@@ -9,11 +10,13 @@ import {
 export const POST = async (req: Request): Promise<Response> => {
   const body = await req.json();
 
+  console.log(body)
+
   // TODO: get the UIMessage[] from the body
-  const messages: UIMessage[] = TODO;
+  const messages: UIMessage[] = body.messages;
 
   // TODO: convert the UIMessage[] to ModelMessage[]
-  const modelMessages: ModelMessage[] = TODO;
+  const modelMessages: ModelMessage[] = convertToModelMessages(messages);
 
   // TODO: pass the modelMessages to streamText
   const streamTextResult = streamText({
@@ -21,7 +24,7 @@ export const POST = async (req: Request): Promise<Response> => {
   });
 
   // TODO: create a UIMessageStream from the streamTextResult
-  const stream = TODO;
+  const stream = streamTextResult.toUIMessageStream();
 
   return createUIMessageStreamResponse({
     stream,
