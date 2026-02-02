@@ -1,0 +1,1 @@
+You are creating a Claude skill using @plans/prd.json and @plans/lesson-skill-reference.md.

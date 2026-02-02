@@ -39,7 +39,7 @@ export const POST = async (req: Request): Promise<Response> => {
   // last message to the chat
   const result = streamText({
     model: google('gemini-2.5-flash'),
-    messages: convertToModelMessages(messages),
+    messages: await convertToModelMessages(messages),
   });
 
   return result.toUIMessageStreamResponse();

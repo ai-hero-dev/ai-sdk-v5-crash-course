@@ -15,7 +15,7 @@ export const POST = async (req: Request): Promise<Response> => {
   const messages: UIMessage[] = body.messages;
 
   const modelMessages: ModelMessage[] =
-    convertToModelMessages(messages);
+    await convertToModelMessages(messages);
 
   // TODO: declare the trace variable using the langfuse.trace method,
   // and pass it the following arguments:

@@ -43,6 +43,10 @@ const runHonoApp = async (opts: {
       return;
     }
 
+    if (url.pathname === '/') {
+      return c.redirect('http://localhost:3000');
+    }
+
     try {
       const modulePath = path.join(
         opts.root,

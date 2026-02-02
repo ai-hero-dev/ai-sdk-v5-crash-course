@@ -14,7 +14,8 @@ const chainOfThoughtPaper = readFileSync(
 
 export const attributionToChainOfThoughtPaper = createScorer<
   string,
-  string
+  string,
+  undefined
 >({
   name: 'Attribution',
   scorer: async ({ input, output, expected }) => {

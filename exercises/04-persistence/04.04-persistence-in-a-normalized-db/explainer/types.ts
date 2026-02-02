@@ -37,5 +37,5 @@ export type MyUIMessagePart = UIMessagePart<
 
 export type MyProviderMetadata = Record<
   string,
-  Record<string, JSONValue>
+  Record<string, JSONValue | undefined>
 >;

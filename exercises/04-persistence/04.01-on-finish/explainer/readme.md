@@ -11,7 +11,7 @@ export const POST = async (req: Request): Promise<Response> => {
 
   const result = streamText({
     model: google('gemini-2.5-flash'),
-    messages: convertToModelMessages(messages),
+    messages: await convertToModelMessages(messages),
     onFinish: ({ response }) => {
       console.log('streamText.onFinish');
       console.log('  response.messages');

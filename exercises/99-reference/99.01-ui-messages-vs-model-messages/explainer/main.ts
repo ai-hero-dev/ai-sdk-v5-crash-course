@@ -27,6 +27,9 @@ const messages: UIMessage[] = [
   },
 ];
 
-const modelMessages = convertToModelMessages(messages);
+const main = async () => {
+  const modelMessages = await convertToModelMessages(messages);
+  console.dir(modelMessages, { depth: null });
+};
 
-console.dir(modelMessages, { depth: null });
+main();

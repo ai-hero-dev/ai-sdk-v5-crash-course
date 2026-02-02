@@ -33,7 +33,7 @@ This example has two messages. We have one message with a role of `user`, anothe
 We can convert `UIMessage` messages to `ModelMessage` messages using the `convertToModelMessages` function.
 
 ```ts
-const modelMessages = convertToModelMessages(messages);
+const modelMessages = await convertToModelMessages(messages);
 ```
 
 The output looks like this:
