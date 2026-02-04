@@ -1,16 +1,27 @@
-import { Langfuse } from 'langfuse';
-import { LangfuseExporter } from 'langfuse-vercel';
 import { NodeSDK } from '@opentelemetry/sdk-node';
+import { AsyncLocalStorageContextManager } from '@opentelemetry/context-async-hooks';
+import { LangfuseSpanProcessor } from '@langfuse/otel';
 
-export const otelSDK = new NodeSDK({
-  traceExporter: new LangfuseExporter(),
-});
+declare global {
+  // eslint-disable-next-line no-var
+  var __langfuseOtelStarted: boolean | undefined;
+}
 
-otelSDK.start();
+export function initLangfuseOtel() {
+  if (globalThis.__langfuseOtelStarted) return;
+  globalThis.__langfuseOtelStarted = true;
 
-export const langfuse = new Langfuse({
-  environment: process.env.NODE_ENV,
-  publicKey: process.env.LANGFUSE_PUBLIC_KEY,
-  secretKey: process.env.LANGFUSE_SECRET_KEY,
-  baseUrl: process.env.LANGFUSE_BASE_URL,
-});
+  const sdk = new NodeSDK({
+    contextManager: new AsyncLocalStorageContextManager(),
+    spanProcessors: [
+      new LangfuseSpanProcessor({
+        publicKey: process.env.LANGFUSE_PUBLIC_KEY!,
+        secretKey: process.env.LANGFUSE_SECRET_KEY!,
+        baseUrl: process.env.LANGFUSE_BASE_URL!,
+        environment: process.env.NODE_ENV,
+      }),
+    ],
+  });
+
+  sdk.start();
+}

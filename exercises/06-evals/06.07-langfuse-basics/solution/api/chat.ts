@@ -7,7 +7,9 @@ import {
   type ModelMessage,
   type UIMessage,
 } from 'ai';
-import { langfuse } from './langfuse.ts';
+import { initLangfuseOtel } from './langfuse.ts';
+
+initLangfuseOtel();
 
 export const POST = async (req: Request): Promise<Response> => {
   const body = await req.json();
@@ -16,10 +18,6 @@ export const POST = async (req: Request): Promise<Response> => {
 
   const modelMessages: ModelMessage[] =
     await convertToModelMessages(messages);
-
-  const trace = langfuse.trace({
-    sessionId: body.id,
-  });
 
   const mostRecentMessage = messages[messages.length - 1];
 
@@ -35,6 +33,10 @@ export const POST = async (req: Request): Promise<Response> => {
       return '';
     })
     .join('');
+
+  const telemetryMetadata = {
+    sessionId: body.id,
+  };
 
   const titleResult = generateText({
     model: google('gemini-2.5-flash-lite'),
@@ -60,9 +62,7 @@ export const POST = async (req: Request): Promise<Response> => {
     experimental_telemetry: {
       isEnabled: true,
       functionId: 'title-generation',
-      metadata: {
-        langfuseTraceId: trace.id,
-      },
+      metadata: telemetryMetadata,
     },
   });
 
@@ -72,9 +72,7 @@ export const POST = async (req: Request): Promise<Response> => {
     experimental_telemetry: {
       isEnabled: true,
       functionId: 'chat',
-      metadata: {
-        langfuseTraceId: trace.id,
-      },
+      metadata: telemetryMetadata,
     },
   });
 
@@ -84,7 +82,6 @@ export const POST = async (req: Request): Promise<Response> => {
 
       console.log('title: ', title.text);
 
-      await langfuse.flushAsync();
     },
   });
 
