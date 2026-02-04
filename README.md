@@ -1,17 +1,17 @@
 # AI SDK v6 Crash Course
 
-<img src="https://res.cloudinary.com/total-typescript/image/upload/v1770220978/ai-sdk-v5-crash-course-github-thumbnail_3x.jpg" alt="AI SDK 5 Crash Course" />
+<img src="https://res.cloudinary.com/total-typescript/image/upload/v1770220978/ai-sdk-v6-crash-course-github-thumbnail_3x.jpg" alt="AI SDK 5 Crash Course" />
 
-🚀 **Master AI SDK v5 with AI Hero's comprehensive crash course.** This repository contains all the code examples and exercises from our hands-on, practical course focused on AI SDK v5 - the incredible TypeScript library that's becoming the standard for AI app development.
+🚀 **Master AI SDK v6 with AI Hero's comprehensive crash course.** This repository contains all the code examples and exercises from our hands-on, practical course focused on AI SDK v6 - the incredible TypeScript library that's becoming the standard for AI app development.
 
-Learn to build production-ready AI applications using AI SDK v5's powerful features and modern development patterns. Available on [aihero.dev](https://aihero.dev).
+Learn to build production-ready AI applications using AI SDK v6's powerful features and modern development patterns. Available on [aihero.dev](https://aihero.dev).
 
-## 🎯 What You'll Master with AI SDK v5
+## 🎯 What You'll Master with AI SDK v6
 
-This crash course will take you from AI SDK v5 basics to advanced production patterns:
+This crash course will take you from AI SDK v6 basics to advanced production patterns:
 
-- **AI SDK v5 Core Concepts** - Understanding the modern AI development toolkit
-- **Streaming with AI SDK v5** - Building real-time, responsive AI experiences using `streamText`
+- **AI SDK v6 Core Concepts** - Understanding the modern AI development toolkit
+- **Streaming with AI SDK v6** - Building real-time, responsive AI experiences using `streamText`
 - **Tool Calling & Function Calling** - Creating AI applications that can use external tools and APIs
 - **Message Parts & Data** - Working with structured message components and custom data
 - **Multi-Provider Support** - Seamlessly switching between OpenAI, Anthropic, Google, and more
@@ -65,11 +65,11 @@ This will allow you to choose between the different course sections.
 
 You can also run `pnpm exercise <exercise-number>` to jump to a specific exercise.
 
-## 📁 AI SDK v5 Course Modules
+## 📁 AI SDK v6 Course Modules
 
 ```
 exercises/
-├── 01-basics/                    # AI SDK v5 fundamentals
+├── 01-basics/                    # AI SDK v6 fundamentals
 │   ├── 01.1-what-is-the-ai-sdk/
 │   ├── 01.2-choosing-a-model/
 │   ├── 01.3-stream-text-to-terminal/
@@ -109,4 +109,4 @@ Each exercise follows this learning structure:
 2. **Verify your setup** - Ensure API keys and dependencies are correct
 3. **Watch the course** - Full explanations available on [aihero.dev](https://aihero.dev)
 
-Ready to master AI SDK v5 and become an AI development expert? Let's start building the future! 🚀
+Ready to master AI SDK v6 and become an AI development expert? Let's start building the future! 🚀
